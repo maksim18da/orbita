@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма заполнения</title>
+    <link rel="stylesheet" href="form.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+        <form class="Contacts">
+            <button type="button" class="close-btn" aria-label="Закрыть">&times;</button>
+            <div class="header">
+                <div class="title_and_description"> 
+                    <span class="title">Контактные данные</span>
+                    <span class="description">заполните форму и мы с вами свяжемся</span>
+                </div>
+            </div>
+            <div class="headers_fields">
+                <div class="surname">
+                    <span class="headers">Фамилия</span>
+                    <input type="text" placeholder="Введите фамилию">
+                </div>
+                <div class="name">
+                    <span class="headers">Имя</span>
+                    <input type="text" placeholder="Введите имя">
+                </div>
+                <div class="phone">
+                    <span class="headers">Телефон</span>
+                    <input type="text" placeholder="Введите телефон">
+                </div>
+                <div class="messenger">
+                    <span class="headers">Мессенджер</span>
+                    <input type="text" placeholder="Ссылка на ваш аккаунт">
+                </div>
+            </div>
+            <div class="personal_data">
+                <div class="input">
+                    <input type="checkbox"><span>Согласен с <a href="#">политикой конфиденциальности </a></span>
+                </div>
+                <div class="input">
+                    <input type="checkbox"><span>Соглаcен на <a href="#">обработку персональных данных</a></span>
+                </div>
+            </div>
+            <button type="submit" class="button">Отправить</button>
+        </form>
+    <script>
+        const closeBtn = document.querySelector(".close-btn");
+        const form = document.querySelector(".Contacts");
+        
+        closeBtn.addEventListener("click", function() {
+            window.parent.postMessage('closeForm', '*');
+        });
+        
+        document.addEventListener("keydown", function(event) {
+            if (event.key === 'Escape') {
+                window.parent.postMessage('closeForm', '*');
+            }
+        });
+        
+        form.addEventListener("click", function(event) {
+            event.stopPropagation();
+        });
+    </script>
+</body>
+</html>
