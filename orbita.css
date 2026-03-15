@@ -11,6 +11,8 @@ body{
     margin: 0;
     padding: 0;
     background-color: #F1F4FF;
+    touch-action: pan-y pan-x;
+    touch-action: manipulation;
 }
 .landinge_page{
     position: relative;
