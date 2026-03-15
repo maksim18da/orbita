@@ -7,8 +7,6 @@ html{
     padding: 0;
 }
 body{
-    touch-action: pan-y pinch-zoom;
-    touch-action: manipulation;
     font-family: 'Manrope', serif;
     margin: 0;
     padding: 0;
