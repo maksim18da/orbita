@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор цвета (JavaScript + jQuery)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #444;
+        }
+
+        /* Таблица с Web-гарантированными цветами */
+        .color-palette {
+            margin: 20px 0;
+            border-collapse: collapse;
+            width: 100%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .color-palette td {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            text-align: center;
+            font-size: 10px;
+            color: black; /* для контраста, но часто не видно */
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+        }
+        .color-palette td:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 8px rgba(0,0,0,0.5);
+            border: 1px solid white;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* Панель управления (ползунки и цветовые блоки) */
+        .control-panel {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        .sliders {
+            flex: 1;
+            min-width: 300px;
+        }
+        .slider-group {
+            margin-bottom: 15px;
+        }
+        .slider-group label {
+            display: inline-block;
+            width: 50px;
+            font-weight: bold;
+        }
+        .slider-group input[type=range] {
+            width: 200px;
+            vertical-align: middle;
+        }
+        .slider-group input[type=number] {
+            width: 60px;
+            margin-left: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Блоки отображения цвета */
+        .color-display-area {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .color-block {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+        }
+        .color-preview {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            background-color: #000000; /* начальный черный */
+        }
+        .hex-value {
+            font-family: monospace;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+            background-color: #eee;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+
+    <!-- Подключение jQuery (например, с CDN) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Калькулятор цвета (Web-палитра)</h1>
+
+        <!-- Таблица с Web-гарантированными цветами -->
+        <table class="color-palette" id="palette-table">
+            <!-- Таблица будет сгенерирована скриптом -->
+        </table>
+
+        <!-- Панель управления RGB составляющими -->
+        <div class="control-panel">
+            <div class="sliders">
+                <h3>Управление RGB</h3>
+                <div class="slider-group">
+                    <label for="red" style="color: red;">R:</label>
+                    <input type="range" id="red" min="0" max="255" value="0">
+                    <input type="number" id="red-val" min="0" max="255" value="0">
+                </div>
+                <div class="slider-group">
+                    <label for="green" style="color: green;">G:</label>
+                    <input type="range" id="green" min="0" max="255" value="0">
+                    <input type="number" id="green-val" min="0" max="255" value="0">
+                </div>
+                <div class="slider-group">
+                    <label for="blue" style="color: blue;">B:</label>
+                    <input type="range" id="blue" min="0" max="255" value="0">
+                    <input type="number" id="blue-val" min="0" max="255" value="0">
+                </div>
+                <button id="apply-rgb">Применить цвет</button>
+            </div>
+            <div class="color-display-area">
+                <div>
+                    <div class="color-block" id="current-color-block"></div>
+                    <div style="text-align: center;">Текущий цвет</div>
+                </div>
+                <div>
+                    <div class="color-preview" id="preview-color-block"></div>
+                    <div style="text-align: center;">Предпросмотр</div>
+                </div>
+                <div class="hex-value" id="hex-display">#000000</div>
+            </div>
+        </div>
+
+        <!-- Область для вывода информации (окно с HEX) -->
+        <div id="info-box" style="margin-top: 20px; padding: 10px; background-color: white; border-radius: 5px; min-height: 30px; font-family: monospace; text-align: center;">
+            Нажмите на ячейку таблицы: ЛКМ — цвет текста, ПКМ — цвет фона (и покажет HEX).
+        </div>
+    </div>
+
+    <script>
+        // === ИСПОЛЬЗОВАНИЕ NATIVE JS (Core, DOM API) и JQUERY ===
+
+        $(document).ready(function() {
+            // Глобальные ссылки на элементы (используем и jQuery, и нативный JS)
+            const body = $('body'); // jQuery объект
+            const nativeBody = document.body; // Нативный элемент
+
+            const redSlider = $('#red');
+            const greenSlider = $('#green');
+            const blueSlider = $('#blue');
+            const redVal = $('#red-val');
+            const greenVal = $('#green-val');
+            const blueVal = $('#blue-val');
+            const previewBlock = $('#preview-color-block');
+            const currentBlock = $('#current-color-block');
+            const hexDisplay = $('#hex-display');
+            const infoBox = $('#info-box');
+
+            // Текущий выбранный цвет (для блока "Текущий цвет")
+            let currentColor = { r: 0, g: 0, b: 0 };
+
+            // --- 1. Генерация таблицы web-гарантированных цветов (216 цветов) ---
+            // Web-safe цвета: 6 градаций на каждый канал: 0x00, 0x33, 0x66, 0x99, 0xCC, 0xFF (0, 51, 102, 153, 204, 255)
+            const webSafeValues = [0, 51, 102, 153, 204, 255]; // 6^3 = 216
+            const paletteTable = $('#palette-table');
+
+            function generatePalette() {
+                let tableHtml = '';
+                let cellIndex = 0;
+                // Создадим строки по 18 ячеек для компактности (216/18 = 12 строк)
+                const cellsPerRow = 18;
+                for (let r of webSafeValues) {
+                    for (let g of webSafeValues) {
+                        for (let b of webSafeValues) {
+                            if (cellIndex % cellsPerRow === 0) {
+                                if (cellIndex > 0) tableHtml += '</tr>';
+                                tableHtml += '<tr>';
+                            }
+                            const hex = rgbToHex(r, g, b);
+                            // Добавляем data-атрибуты с компонентами и hex
+                            tableHtml += `<td data-r="${r}" data-g="${g}" data-b="${b}" data-hex="${hex}" style="background-color: ${hex};"></td>`;
+                            cellIndex++;
+                        }
+                    }
+                }
+                tableHtml += '</tr>';
+                paletteTable.html(tableHtml); // используем jQuery .html()
+            }
+
+            // --- 2. Вспомогательные функции ---
+            function rgbToHex(r, g, b) {
+                return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+            }
+
+            function hexToRgb(hex) {
+                const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+                } : null;
+            }
+
+            // Обновление ползунков и предпросмотра из RGB
+            function updateSlidersAndPreview(r, g, b) {
+                redSlider.val(r);
+                greenSlider.val(g);
+                blueSlider.val(b);
+                redVal.val(r);
+                greenVal.val(g);
+                blueVal.val(b);
+                const hex = rgbToHex(r, g, b);
+                previewBlock.css('background-color', hex);
+                hexDisplay.text(hex);
+            }
+
+            // Обновление полей ввода чисел при движении слайдера
+            function syncNumberInputs() {
+                redVal.val(redSlider.val());
+                greenVal.val(greenSlider.val());
+                blueVal.val(blueSlider.val());
+                const r = parseInt(redSlider.val());
+                const g = parseInt(greenSlider.val());
+                const b = parseInt(blueSlider.val());
+                previewBlock.css('background-color', rgbToHex(r, g, b));
+                hexDisplay.text(rgbToHex(r, g, b));
+            }
+
+            // Применить цвет из слайдеров к "текущему" блоку (но не к странице)
+            function applyRgbToCurrentBlock() {
+                const r = parseInt(redSlider.val());
+                const g = parseInt(greenSlider.val());
+                const b = parseInt(blueSlider.val());
+                currentColor = { r, g, b };
+                const hex = rgbToHex(r, g, b);
+                currentBlock.css('background-color', hex);
+                // По заданию: не применяем к странице сразу, только через клик по ячейке.
+            }
+
+            // --- 3. Обработчики событий (смесь jQuery и нативного JS) ---
+
+            // Синхронизация слайдеров и числовых полей (нативный JS + jQuery)
+            redSlider.on('input', syncNumberInputs);
+            greenSlider.on('input', syncNumberInputs);
+            blueSlider.on('input', syncNumberInputs);
+
+            // Обработка изменения числовых полей
+            redVal.on('input', function() { redSlider.val($(this).val()).trigger('input'); });
+            greenVal.on('input', function() { greenSlider.val($(this).val()).trigger('input'); });
+            blueVal.on('input', function() { blueSlider.val($(this).val()).trigger('input'); });
+
+            // Кнопка "Применить цвет" устанавливает текущий блок
+            $('#apply-rgb').on('click', function() {
+                applyRgbToCurrentBlock();
+            });
+
+            // --- 4. Клики по ячейкам таблицы (используем делегирование событий jQuery) ---
+            paletteTable.on('click', 'td', function(event) {
+                // ЛЕВАЯ кнопка мыши (button === 0)
+                if (event.button === 0) {
+                    const r = $(this).data('r');
+                    const g = $(this).data('g');
+                    const b = $(this).data('b');
+                    const hex = $(this).data('hex');
+
+                    // Меняем цвет ТЕКСТА документа (body)
+                    body.css('color', hex); // jQuery стиль
+
+                    // Можно также нативным способом: nativeBody.style.color = hex;
+
+                    // Обновляем информацию в infoBox
+                    infoBox.html(`ЛКМ: Цвет текста изменён на ${hex} (R:${r} G:${g} B:${b})`);
+
+                    // Обновляем ползунки и предпросмотр до этого цвета
+                    updateSlidersAndPreview(r, g, b);
+                }
+            });
+
+            // Обработка правого клика (контекстное меню) на ячейках таблицы
+            // Используем нативный addEventListener, чтобы отменить стандартное меню,
+            // но можно и через jQuery с return false, но для надежности и демонстрации DOM API используем смесь.
+            // Получаем нативный элемент таблицы и вешаем обработчик через DOM API.
+            const nativeTable = document.getElementById('palette-table');
+
+            // Функция обработчика правого клика (нативный JS)
+            function onRightClickCell(event) {
+                // event.target может быть ячейкой (td). Проверим, что клик именно по ячейке или внутри.
+                const target = event.target.closest('td'); // ищем ближайший td
+                if (!target) return; // если не ячейка, выходим
+
+                event.preventDefault(); // Отменяем контекстное меню браузера
+
+                // Получаем данные из data-атрибутов (нативный способ)
+                const r = parseInt(target.dataset.r);
+                const g = parseInt(target.dataset.g);
+                const b = parseInt(target.dataset.b);
+                const hex = target.dataset.hex;
+
+                // Изменяем цвет ФОНА документа
+                nativeBody.style.backgroundColor = hex; // нативный JS
+                // Альтернатива jQuery: $('body').css('backgroundColor', hex);
+
+                // Появляется окно (alert) с шестнадцатеричным кодом цвета
+                alert(`Шестнадцатеричный код цвета: ${hex}`);
+
+                // Обновляем информационный блок
+                infoBox.html(`ПКМ: Цвет фона изменён на ${hex} (R:${r} G:${g} B:${b})`);
+
+                // Также обновляем ползунки до этого цвета (для удобства)
+                updateSlidersAndPreview(r, g, b);
+
+                // Обновляем "текущий цвет" (блок) на этот цвет? Можно по желанию, но не обязательно.
+                // Для полноты обновим блок текущего цвета.
+                currentBlock.css('background-color', hex);
+                currentColor = { r, g, b };
+            }
+
+            // Вешаем обработчик на таблицу через нативный DOM API (захват события contextmenu)
+            nativeTable.addEventListener('contextmenu', onRightClickCell);
+
+            // Для демонстрации работы с jQuery, продублируем левый клик (но он уже есть выше через .on('click')).
+            // Все отлично.
+
+            // Инициализация при загрузке
+            generatePalette();
+
+            // Установим начальное состояние: черный цвет в preview и current
+            updateSlidersAndPreview(0, 0, 0);
+            currentBlock.css('background-color', '#000000');
+            currentColor = { r: 0, g: 0, b: 0 };
+
+            // Для красоты добавим обработчик нажатия на текущий блок (необязательно)
+            currentBlock.on('click', function() {
+                const hex = rgbToHex(currentColor.r, currentColor.g, currentColor.b);
+                alert(`Текущий цвет в блоке: ${hex}`);
+            });
+
+        }); // end ready
+    </script>
+</body>
+</html>

@@ -76,11 +76,17 @@ body {
     font-weight: 600;
 }
 
-.headers_fields input {
+.headers_fields input,
+.input-box input {
     border-radius: 20px;
     border: 1px solid #F684EF;
     padding: 10px;
     font-family: 'Manrope', sans-serif;
+    width: 100%; 
+}
+
+.input-box {
+    width: 100%;
 }
 
 .personal_data {
@@ -161,4 +167,11 @@ body {
 
 .button:active {
     transform: scale(0.95);
+}
+.input-box.error{
+    border-radius: 20px;
+    border: 1px solid red;
+}
+input.error{
+    border: none;
 }

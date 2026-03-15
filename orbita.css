@@ -1,3 +1,6 @@
+html{
+    scroll-behavior: smooth;
+}
 *{
     box-sizing: border-box;
     margin: 0;
@@ -21,6 +24,7 @@ body{
     justify-content: space-between;
     align-items: center;
 }
+
 .header_logo{
     display: flex;
     align-items: center;
@@ -36,11 +40,13 @@ body{
     line-height: 110%;
     color: #000083;
 }
+
 .header_menu{
     display: flex;
     align-items: center;
     gap:81px;
 }
+
 .header_menu ul {
     list-style: none;
     display: flex;
@@ -54,6 +60,7 @@ body{
     line-height: 110%;
     color: #000083;
 }
+
 .button_header_menu {
     font-family: 'Manrope';
     font-size: 20px;
@@ -81,7 +88,8 @@ body{
     background: linear-gradient(45deg, #CC00B4, #E600C8); 
 }
 .main_description{
-    width: 669px;
+    max-width: 669px;
+    width: 100%;
     height: 423px;
     display: flex;
     flex-direction: column;
@@ -105,6 +113,10 @@ body{
     line-height: 130%;
     color: #000000;
 }
+.mobile-only {
+    display: none;
+}
+
 .main_buttons{
     display: flex;
     align-items: center;
@@ -144,10 +156,10 @@ body{
         0 0 0 16px rgba(255, 0, 200, 0.2),
         0 20px 40px rgba(214, 0, 184, 0.5);
 }
-
 .button_description:active {
     transform: scale(0.95);
 }
+
 .play-icon {
     width: 0;
     height: 0;
@@ -161,6 +173,7 @@ body{
     align-items: flex-start;
     background: linear-gradient(#F1F4FF, #ffb3f6a9 100%);
     z-index:1;
+    flex-wrap: wrap;
 }
 
 .fon {
@@ -220,7 +233,6 @@ body{
     margin: 0;
     display: block;
 }
-
 .sale span {
     font-size: 15.53px;
     font-weight: 700;
@@ -330,12 +342,6 @@ body{
     background: linear-gradient(45deg, #FF00DD, #E700C8);
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(231, 0, 200, 0.3);
-}
-
-.lesson_button:active {
-    transform: translateY(1px); 
-    box-shadow: 0 5px 10px rgba(231, 0, 200, 0.2); 
-    background: linear-gradient(45deg, #CC00B4, #E600C8); 
 }
 .main_school_subjects{
     width: 100%;
@@ -1060,4 +1066,183 @@ body{
     object-fit: contain;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+@media screen and (max-width: 480px) {
+    .header{
+        margin: 10px 7px 41px 7px;
+    }
+    .header_logo a{
+        margin-left: 0;
+    }
+    .header_logo a span{
+        font-size: 15px;
+    }
+    .header_logo img{
+        width: 23px;
+        height: 23px;
+    }
+    .header_menu{
+        gap: 13px;
+    }
+    .header_logo a span{
+        font-size: 12px;
+    }
+    .button_header_menu{
+        font-size: 10px;
+        padding: 8px;
+    }
+    #mobile{
+        font-size: 18px;
+        padding: 15px;
+    }
+    .mobile-hide{
+        display: none;
+    }
+    .header_menu ul{
+        gap: 10px;
+    }
+    .header_menu ul li a{
+        font-size: 12px;
+    }
+    .main_description{
+        align-items: center;
+        margin: 0 auto;
+        height: auto;
+    }
+    .description{
+        row-gap: 10px
+    }
+    .span1{
+        font-size: 25px;
+        text-align: center;
+    }
+    .desktop-only{
+        display: none;
+    }
+    .mobile-only{
+        display: block;
+        text-align: center;
+        font-size: 15px;
+    }
+    .main_video span{
+        display: none;
+    }
+    .button_description {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: radial-gradient(circle at top left, #E700C8, #FF00DD);
+        box-shadow: 0 0 0 10px rgba(255, 0, 200, 0.15);
+        position: relative;
+        display: block;
+    }
+    
+    .button_description::after {
+        content: "▶";
+        position: absolute;
+        left: 32%;
+        top: 15%;
+        color: white;
+        font-size: 20px;
+    }
+    
+    .button_description:hover {
+        transform: scale(1.1);
+        box-shadow:
+            0 0 0 8px rgba(255, 0, 200, 0.15),
+            0 10px 20px rgba(214, 0, 184, 0.5);
+    }
+    
+    .main_video{
+        margin-left: 24px;
+    }
+    .fon {
+        margin-top: -20px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .fon img[alt="Студентка"] {
+        width: 317px;
+        height: 475px;
+        transform: translateX(-50px);
+    }
+    .fon::before {
+        width: 330px;
+        height: 330px;
+        left: 50%;
+        top: 50%;
+    }
+    .fon::after {
+        width: 350px;
+        height: 350px;
+        border-width: 6px;
+        left: 50%;
+        top: 50%;
+    }
+    .sale {
+        top: 160px;
+        left: 5px;
+        width: 150px;
+        height: 50px;
+        padding: 5px 8px;
+        gap: 10px;
+    }
+    .sale img {
+        width: 30px;
+        height: 30px;
+    }
+    .sale span {
+        font-size: 12px;
+    }
+    .online_students {
+        top: 210px;
+        right: 20px;
+        width: 140px;
+        height: 90px;
+        padding: 12px;
+        gap: 9px;
+    }
+    
+    .online_students img {
+        width: 100px;
+        height: auto;
+    }
+    
+    .number {
+        font-size: 20px;
+    }
+    
+    .students_info .description {
+        font-size: 12px;
+        text-align: center;
+    }
+    .online_lesson {
+        left: 20px;
+        top: 360px;
+        width: 163px;
+        height: 96px;
+        padding: 11px 8px;
+    }
+    
+    .online_lesson img {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .title {
+        font-size: 12px;
+    }
+    
+    .date {
+        font-size: 10px;
+    }
+    
+    .lesson_button {
+        max-width: 87px;
+        font-size: 11px;
+        padding: 4px;
+        font-size: 10px;
+    }
 }

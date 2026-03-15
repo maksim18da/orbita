@@ -1,0 +1,538 @@
+html{
+    scroll-behavior: smooth;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Manrope', serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F1F4FF;
+}
+.landinge_page{
+    position: relative;
+    width: 100%;
+}
+
+.header{
+    max-width: 100%;
+    display: flex;
+    margin: 0px 40px 20px 40px; 
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header_logo{
+    display: flex;
+    align-items: center;
+}
+.header_logo a {
+    margin-left: -5px;
+    text-decoration: none;
+}
+.header_logo a span {
+    font-family: 'Orbitron';
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 110%;
+    color: #000083;
+}
+
+.header_menu{
+    display: flex;
+    align-items: center;
+    gap:81px;
+}
+
+.header_menu ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap:50px;
+}
+.header_menu ul li a {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 110%;
+    color: #000083;
+}
+
+.button_header_menu {
+    font-family: 'Manrope';
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 110%;
+    color: #FFFFFF;
+    border: 0;
+    background: linear-gradient(45deg, #E700C8, #FF00DD);
+    border-radius: 10px;
+    padding: 20px 20px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.button_header_menu:hover {
+    background: linear-gradient(45deg, #FF00DD, #E700C8);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(231, 0, 200, 0.3);
+}
+
+.button_header_menu:active {
+    transform: translateY(1px); 
+    box-shadow: 0 5px 10px rgba(231, 0, 200, 0.2); 
+    background: linear-gradient(45deg, #CC00B4, #E600C8); 
+}
+.main_description{
+    max-width: 669px;
+    width: 100%;
+    height: 423px;
+    display: flex;
+    flex-direction: column;
+    margin: 155px 0px 0px 40px;
+}
+.description{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px
+}
+.span1{
+    font-size: 50px;
+    font-weight: 800;
+    line-height: 120%;
+    color: #000083;
+    letter-spacing: -0.02em;
+}
+.span2{
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 130%;
+    color: #000000;
+}
+.mobile-only {
+    display: none;
+}
+
+.main_buttons{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.main_video{
+    display: flex;
+    align-items: center;
+    margin-left: 102px;
+    gap:20px;
+}
+.main_video span{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 130%;
+    color: #000000;
+}
+.button_description {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background: radial-gradient(circle at top left, #E700C8, #FF00DD);
+    box-shadow:
+        0 0 0 12px rgba(255, 0, 200, 0.15),
+        0 15px 30px rgba(214, 0, 184, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button_description:hover {
+    transform: scale(1.1);
+    box-shadow:
+        0 0 0 16px rgba(255, 0, 200, 0.2),
+        0 20px 40px rgba(214, 0, 184, 0.5);
+}
+.button_description:active {
+    transform: scale(0.95);
+}
+
+.play-icon {
+    width: 0;
+    height: 0;
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-left: 22px solid white;
+    margin-left: 4px;
+}
+.page1{
+    display: flex;
+    align-items: flex-start;
+    background: linear-gradient(#F1F4FF, #ffb3f6a9 100%);
+    z-index:1;
+    flex-wrap: wrap;
+}
+
+.fon {
+    position: relative; 
+    display: inline-block; 
+    z-index: 2;
+}
+
+.fon img {
+    margin-left: 189px;
+    margin-top: 49px;
+    display: block;
+}
+.fon::before {
+    content: '';
+    position: absolute;
+    width: 518px; 
+    height: 518px;
+    background: linear-gradient(45deg,#FF00DD, #E700C8);
+    border-radius: 50%;
+    z-index: -1;
+    top: 50%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+}
+.fon::after {
+    content: '';
+    position: absolute;
+    width: 562px; 
+    height: 562px;
+    border: #FF7CED dashed 6px;
+    border-radius: 50%;
+    z-index: -1;
+    top: 50%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+}
+.sale {
+    position: absolute;
+    top: 160px;
+    left: 40px;
+    width: 210px;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 10px 15px;
+    border-radius: 16px;
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap:15px;
+}
+.sale img {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    display: block;
+}
+.sale span {
+    font-size: 15.53px;
+    font-weight: 700;
+    color: #E701C8;
+    line-height: 110%;
+}
+.online_students{
+    position: absolute;
+    top: 270px;
+    right: -65px;
+    width: 240px;
+    height: 145px;
+    border-radius: 16px;
+    padding: 20px 35px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+.students_info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.online_students img{
+    width: 130px;
+    height: 34px;
+    margin: 0;
+    display: block;
+}
+.number{
+    font-size: 29px;
+    font-weight: 700;
+    color: #E701C8;
+    line-height: 110%;
+}
+.description{
+    font-size: 19px;
+    font-weight: 500;
+    color: #000083;
+    line-height: 110%;
+}
+.online_lesson{
+    position: absolute;
+    left: 140px;
+    bottom: 168px;
+    width: 210px;
+    height: 124px;
+    border-radius: 16px;
+    padding: 15px 13px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+}
+.lesson_info{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.online_lesson img{
+    width: 42px;
+    height: 42px;
+    margin: 0;
+    display: block;
+}
+.title{
+    font-size: 15px;
+    font-weight: 700;
+    color: #E701C8;
+    line-height: 110%;
+}
+.date{
+    font-size: 12px;
+    font-weight: 600;
+    color: #000083;
+    line-height: 110%;
+}
+.lesson_button {
+    width: 121px;
+    height: 38px;
+    font-family: 'Manrope';
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 110%;
+    color: #FFFFFF;
+    border: 0.1px solid #ffffff1f;
+    background: linear-gradient(45deg, #FF00DD, #E700C8);
+    border-radius: 5px;
+    padding: 5px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.lesson_button:hover {
+    background: linear-gradient(45deg, #FF00DD, #E700C8);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(231, 0, 200, 0.3);
+}
+.video-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+@media screen and (max-width: 480px) {
+    .header{
+        margin: 10px 7px 41px 7px;
+    }
+    .header_logo a{
+        margin-left: 0;
+    }
+    .header_logo a span{
+        font-size: 15px;
+    }
+    .header_logo img{
+        width: 23px;
+        height: 23px;
+    }
+    .header_menu{
+        gap: 13px;
+    }
+    .header_logo a span{
+        font-size: 12px;
+    }
+    .button_header_menu{
+        font-size: 10px;
+        padding: 8px;
+    }
+    #mobile{
+        font-size: 18px;
+        padding: 15px;
+    }
+    .mobile-hide{
+        display: none;
+    }
+    .header_menu ul{
+        gap: 10px;
+    }
+    .header_menu ul li a{
+        font-size: 12px;
+    }
+    .main_description{
+        align-items: center;
+        margin: 0 auto;
+        height: auto;
+    }
+    .description{
+        row-gap: 10px
+    }
+    .span1{
+        font-size: 25px;
+        text-align: center;
+    }
+    .desktop-only{
+        display: none;
+    }
+    .mobile-only{
+        display: block;
+        text-align: center;
+        font-size: 15px;
+    }
+    .main_video span{
+        display: none;
+    }
+    .button_description {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: radial-gradient(circle at top left, #E700C8, #FF00DD);
+        box-shadow: 0 0 0 10px rgba(255, 0, 200, 0.15);
+        position: relative;
+        display: block;
+    }
+    
+    .button_description::after {
+        content: "▶";
+        position: absolute;
+        left: 32%;
+        top: 15%;
+        color: white;
+        font-size: 20px;
+    }
+    
+    .button_description:hover {
+        transform: scale(1.1);
+        box-shadow:
+            0 0 0 8px rgba(255, 0, 200, 0.15),
+            0 10px 20px rgba(214, 0, 184, 0.5);
+    }
+    
+    .main_video{
+        margin-left: 24px;
+    }
+    .fon {
+        margin-top: -20px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .fon img[alt="Студентка"] {
+        width: 317px;
+        height: 475px;
+        transform: translateX(-50px);
+    }
+    .fon::before {
+        width: 330px;
+        height: 330px;
+        left: 50%;
+        top: 50%;
+    }
+    .fon::after {
+        width: 350px;
+        height: 350px;
+        border-width: 6px;
+        left: 50%;
+        top: 50%;
+    }
+    .sale {
+        top: 160px;
+        left: 5px;
+        width: 150px;
+        height: 50px;
+        padding: 5px 8px;
+        gap: 10px;
+    }
+    .sale img {
+        width: 30px;
+        height: 30px;
+    }
+    .sale span {
+        font-size: 12px;
+    }
+    .online_students {
+        top: 210px;
+        right: 20px;
+        width: 140px;
+        height: 90px;
+        padding: 12px;
+        gap: 9px;
+    }
+    
+    .online_students img {
+        width: 100px;
+        height: auto;
+    }
+    
+    .number {
+        font-size: 20px;
+    }
+    
+    .students_info .description {
+        font-size: 12px;
+        text-align: center;
+    }
+    .online_lesson {
+        left: 20px;
+        top: 360px;
+        width: 163px;
+        height: 96px;
+        padding: 11px 8px;
+    }
+    
+    .online_lesson img {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .title {
+        font-size: 12px;
+    }
+    
+    .date {
+        font-size: 10px;
+    }
+    
+    .lesson_button {
+        max-width: 87px;
+        font-size: 11px;
+        padding: 4px;
+        font-size: 10px;
+    }
+}

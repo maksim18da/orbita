@@ -22,19 +22,27 @@
             <div class="headers_fields">
                 <div class="surname">
                     <span class="headers">Фамилия</span>
-                    <input type="text" placeholder="Введите фамилию">
+                    <div class="input-box">
+                        <input type="text" class="input-field" placeholder="Введите фамилию">
+                    </div>
                 </div>
                 <div class="name">
                     <span class="headers">Имя</span>
-                    <input type="text" placeholder="Введите имя">
+                    <div class="input-box">
+                        <input type="text" class="input-field" placeholder="Введите имя">
+                    </div>
                 </div>
                 <div class="phone">
                     <span class="headers">Телефон</span>
-                    <input type="text" placeholder="Введите телефон">
+                    <div class="input-box">
+                        <input type="text" class="input-field" placeholder="Введите телефон">
+                    </div>
                 </div>
                 <div class="messenger">
                     <span class="headers">Мессенджер</span>
-                    <input type="text" placeholder="Ссылка на ваш аккаунт">
+                    <div class="input-box">
+                        <input type="text" class="input-field" placeholder="Ссылка на ваш аккаунт">
+                    </div>
                 </div>
             </div>
             <div class="personal_data">
@@ -45,25 +53,8 @@
                     <input type="checkbox"><span>Соглаcен на <a href="#">обработку персональных данных</a></span>
                 </div>
             </div>
-            <button type="submit" class="button">Отправить</button>
+            <button type="submit" class="button" id="button-submit">Отправить</button>
         </form>
-    <script>
-        const closeBtn = document.querySelector(".close-btn");
-        const form = document.querySelector(".Contacts");
-        
-        closeBtn.addEventListener("click", function() {
-            window.parent.postMessage('closeForm', '*');
-        });
-        
-        document.addEventListener("keydown", function(event) {
-            if (event.key === 'Escape') {
-                window.parent.postMessage('closeForm', '*');
-            }
-        });
-        
-        form.addEventListener("click", function(event) {
-            event.stopPropagation();
-        });
-    </script>
+    <script src="./form.js"></script>
 </body>
 </html>
