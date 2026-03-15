@@ -1,5 +1,6 @@
 html{
     scroll-behavior: smooth;
+    touch-action: none;
 }
 *{
     box-sizing: border-box;
@@ -7,6 +8,7 @@ html{
     padding: 0;
 }
 body{
+    touch-action: none;
     font-family: 'Manrope', serif;
     margin: 0;
     padding: 0;
