@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О школе</title>
+    <link rel="stylesheet" href="{% static 'css/orbita.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link rel="icon" href="{% static 'images/Planet.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="landinge_page">
+            <nav class="header">
+                <div class="header_logo">
+                    <img src="{% static 'images/Planet.png' %}" alt="Logo">
+                    <a href="{% url 'home_page' %}"><span>Orbita</span></a>
+                </div>
+                <div class="header_menu">
+                    <ul>
+                        <li><a href="{% url 'about_page' %}">О школе</a></li>
+                        <li><a href="{% url 'home_page' %}#tariffs">Тарифы</a></li>
+                        <li><a href="{% url 'about_page' %}#reviews">Отзывы</a></li>
+                        <li class="mobile-hide">
+                            <div class="popover_block">
+                                <a>Контакты</a>
+                                <div class="popover">
+                                    <ul>
+                                        <li>
+                                            <div class="network">
+                                                <a href="https://t.me/frozZymen"><img src="{% static 'images/telegram.png' %}" alt="telegram logo">telegram</a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="network">
+                                                <a href="https://api.whatsapp.com/send?phone=79000560515"><img src="{% static 'images/whatsapp.png' %}" alt="whatsapp logo">whatsapp</a>
+                                            </div>
+                                        </li>
+                                        <li class="copy-block" data-copy="+7-900-056-05-15">+7(900)056-05-15</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="{% url 'registration' %}" class="button_personal_account">Личный кабинет</a>
+                </div>
+            </nav>
+        </header>
+        <section class="about-page1">
+            <div class="visual">
+                <img src="{% static 'images/blur.png' %}" alt="blur" class="blur">
+                <img src="{% static 'images/schoolgirl.png' %}" alt="schoolgirl" class="schoolgirl">
+            </div>
+            <div class="study">
+                <span class="headline">Обучайся вместе с нами</span>
+                <span class="study-description">
+                    Развивающаяся онлайн-школа с комфортными<br>
+                    условиями для индивидуального и группового обучения:<br>
+                    гибкий график, постоянный куратор и понятный<br>
+                    прогресс на каждом занятии.
+                </span>
+                <div class="buttons">
+                    <button class="study-btn">Начать бесплатно</button>
+                    <button class="study-btn">Смотреть программы</button>
+                </div>
+            </div>
+            <img src="{% static 'images/Earth.png' %}" alt="Earth" class="earth">
+        </section>
+        <div class="advantages_block">
+            <div class="advantage">
+                <span class="advantage-title" id="procent">80%</span>
+                <span class="advantage-details">улучшили оценки</span>
+            </div>
+            <div class="vertical-line"></div>
+            <div class="advantage">
+                <span class="advantage-title" id="days">24/7</span>
+                <span class="advantage-details">на связи куратор</span>
+            </div>
+            <div class="vertical-line"></div>
+            <div class="advantage">
+                <span class="advantage-title" id="items">3</span>
+                <span class="advantage-details">предмета обучения</span>
+            </div>
+            <div class="vertical-line"></div>
+            <div class="advantage">
+                <span class="advantage-title" id="exam_procents">96%</span>
+                <span class="advantage-details">сдают экзамены на 4-5</span>
+            </div>
+        </div>
+        <section class="hybrid-learning">
+            <div class="description">
+                <span class="explanatory-title">Гибридный формат</span>
+                <span class="main-title">Онлайн или очно - выбираешь ты</span>
+                <span class="about-text">Предлагаем два вида обучения, чтобы каждый мог выбрать<br>для себя комфортный.</span>
+            </div>
+            <img src="{% static 'images/rocket.png' %}" alt="rocket" class="rocket_img">
+            <div class="benefit-cards">
+                <div class="online-training">
+                    <div class="mask-group-1">
+                        <img src="{% static 'images/online training.png' %}" alt="online training picture">
+                    </div>
+                    <div class="about-online-training">
+                        <div class="online"><div class="circle"></div>Онлайн</div>
+                        <span>Учись из дома в удобное время</span>
+                        <div class="ul">
+                            <div class="li"><div class="cirle_ol"><img src="{% static 'images/tick.svg' %}" alt="tick"></div>Гибкое расписание</div>
+                            <div class="li"><div class="cirle_ol"><img src="{% static 'images/tick.svg' %}" alt="tick"></div>Записи уроков</div>
+                            <div class="li"><div class="cirle_ol"><img src="{% static 'images/tick.svg' %}" alt="tick"></div>Комфортная атмосфера</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="personally">
+                    <div class="mask-group-1">
+                        <img src="{% static 'images/personal training.png' %}" alt="personal training picture">
+                    </div>
+                    <div class="about-personally">
+                        <div class="online"><div class="circle"></div>Очно</div>
+                        <span>Личное общение с учителем - ключ к успеху</span>
+                        <div class="ul">
+                            <div class="li"><div class="cirle_ol"><img src="{% static 'images/tick.svg' %}" alt="tick"></div>Живое общение</div>
+                            <div class="li"><div class="cirle_ol"><img src="{% static 'images/tick.svg' %}" alt="tick"></div>Быстрое усваивание информации</div>
+                            <div class="li"><div class="cirle_ol"><img src="{% static 'images/tick.svg' %}" alt="tick"></div>Мгновенная обратная связь</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="teachers-orbita">
+            <div class="description">
+                <span class="explanatory-title">Команда</span>
+                <span class="main-title">Преподаватели Orbita</span>
+                <span class="about-text">Люди с огромным опытом и желанием помогать вам<br>в прохождении сложных тем.</span>
+            </div>
+            <div class="cards">
+                <div class="teacher-card">
+                    <div class="mask-group-2">
+                        <img src="{% static 'images/Maxim Sergeevich.png' %}" alt="Maxim Sergeevich">
+                    </div>
+                    <div class="about-teacher">
+                        <div class="experience"> Более 4 лет опыта работы</div>
+                        <div class="name-position">
+                            <span class="name">Максим Сергеевич</span>
+                            <span class="position">Руководитель онлайн-школы</span>
+                        </div>
+                        <div class="specialized-subjects">
+                            <div class="box">Физика</div>
+                            <div class="box">Математика</div>
+                            <div class="box">Информатика</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="new-teacher">
+                    <span>Ждем нового преподавателя</span>
+                </div>
+                <div class="new-teacher">
+                    <span>Ждем нового преподавателя</span>
+                </div>
+                <div class="new-teacher">
+                    <span>Ждем нового преподавателя</span>
+                </div>
+                <div class="new-teacher">
+                    <span>Ждем нового преподавателя</span>
+                </div>
+                <div class="new-teacher">
+                    <span>Ждем нового преподавателя</span>
+                </div>
+                <div class="new-teacher">
+                    <span>Ждем нового преподавателя</span>
+                </div>
+                <div class="new-teacher">
+                    <span>Ждем нового преподавателя</span>
+                </div>
+                <div class="new-teacher">
+                    <span>Ждем нового преподавателя</span>
+                </div>
+            </div>
+            <div class="back"><img src="{% static 'images/arrow.svg' %}" alt="arrow-back"></div>
+            <div class="forward"><img src="{% static 'images/arrow.svg' %}" alt="arrow-forward"></div>
+        </section>
+
+        <section class="students-reviews" id="reviews">
+            <div class="description">
+                <span class="main-title">Отзывы наших учеников</span>
+                <span class="about-text">Давайте прочитаем, что о нас думают наши ученики</span>
+            </div>
+            <div class="reviews">
+                <div class="reviews-track">
+                    <div class="reviews-box">
+                        <div class="about-student">
+                            <span class="student-name">Виктория</span>
+                            <div class="grade-subject">
+                                <div class="grade">9 класс</div>
+                                <div class="subject">Физика</div>
+                            </div>
+                        </div>
+                        <div class="rating" style="display:flex;gap:4px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24"><defs><linearGradient id="h"><stop stop-color="#FFD700"/><stop stop-color="#fefefefe"/></linearGradient></defs><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="url(#h)" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                        </div>
+                        <div class="review-description">
+                            Начали практически с нуля подготовку к ОГЭ по физике на онлайн-занятиях, и это реально помогло.
+                            Разбирали именно то, что попадается на экзамене — КПД, графики движения, расчёты.
+                            Многое из того, что решали на занятиях, попалось мне на самом ОГЭ.
+                            Как итог - 4 по экзамену, мои родители и я были очень рады такую результату.
+                            Спасибо за подготовку!
+                        </div>
+                    </div>
+
+                    <div class="reviews-box">
+                        <div class="about-student">
+                            <span class="student-name">Иван</span>
+                            <div class="grade-subject">
+                                <div class="grade">9 класс</div>
+                                <div class="subject">Физика</div>
+                            </div>
+                        </div>
+                        <div class="rating" style="display:flex;gap:4px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24"><defs><linearGradient id="h"><stop stop-color="#FFD700"/><stop stop-color="#fefefefe"/></linearGradient></defs><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="url(#h)" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                        </div>
+                        <div class="review-description">
+                            Готовился к ОГЭ по физике и результат меня порадовал:
+                            24 первичных балла, 61% выполнения, итоговая оценка — 4.
+                            На занятиях разбирали не всё подряд, а то,
+                            что реально нужно для экзамена — это сильно сэкономило время и нервы.
+                        </div>
+                    </div>
+
+                    <div class="reviews-box">
+                        <div class="about-student">
+                            <span class="student-name">Михаил</span>
+                            <div class="grade-subject">
+                                <div class="grade">8 класс</div>
+                                <div class="subject">Математика</div>
+                            </div>
+                        </div>
+                        <div class="rating" style="display:flex;gap:4px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24"><defs><linearGradient id="h"><stop stop-color="#FFD700"/><stop stop-color="#fefefefe"/></linearGradient></defs><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="url(#h)" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                        </div>
+                        <div class="review-description">
+                            Как только начал ходить на занятия по геометрии, оценки в школе пошли вверх практически сразу — это заметила даже учительница.
+                            Я, если честно, иногда ленюсь, но результат всё равно виден, и это самое приятное.
+                            Спасибо за терпение и понятные объяснения!
+                        </div>
+                    </div>
+
+                    <div class="reviews-box">
+                        <div class="about-student">
+                            <span class="student-name">Слава</span>
+                            <div class="grade-subject">
+                                <div class="grade">9 класс</div>
+                                <div class="subject">Физика</div>
+                            </div>
+                        </div>
+                        <div class="rating" style="display:flex;gap:4px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24"><defs><linearGradient id="h"><stop stop-color="#FFD700"/><stop stop-color="#fefefefe"/></linearGradient></defs><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="url(#h)" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                        </div>
+                        <div class="review-description">
+                            Готовился к экзамену в очень короткие сроки, и результат порадовал — написал на 4, доволен собой.
+                            Занятия реально помогли разобраться в том, что нужно было знать для экзамена.
+                            Благодаря этому результату теперь иду в 10 класс в инженерный класс — это была моя цель.
+                            Спасибо большое за помощь в подготовке!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="back"><img src="{% static 'images/arrow.svg' %}" alt="arrow-back"></div>
+            <div class="forward"><img src="{% static 'images/arrow.svg' %}" alt="arrow-forward"></div>
+        </section>
+
+        <section class="introductory-lesson">
+            <div class="text">
+                <div class="description">
+                    <span class="explanatory-title">Не попробуешь - не узнаешь</span>
+                    <span class="main-title">Начни обучение с вводного урока</span>
+                    <span class="about-text">Познакомься с преподавателем, оцени формат и убедись,<br>что Orbita подходит именно тебе.</span>
+                </div>
+                <div class="benefits-buttons">
+                    <div class="ul">
+                        <div class="li"><div class="cirle_ol"><img src="{% static 'images/tick.svg' %}" alt="tick"></div>30 минут с преподавателем</div>
+                        <div class="li"><div class="cirle_ol"><img src="{% static 'images/tick.svg' %}" alt="tick"></div>Индивидуальные задания</div>
+                        <div class="li"><div class="cirle_ol"><img src="{% static 'images/tick.svg' %}" alt="tick"></div>Диагностика уровня знаний</div>
+                    </div>
+                    <div class="buttons">
+                        <button class="study-btn">Записаться</button>
+                        <button class="study-btn">Примеры заданий</button>
+                    </div>
+                </div>
+            </div>
+            <div class="introductory-lesson-visual">
+                <div class="background"></div>
+                <div class="mask-group-3"><img src="{% static 'images/quail.png' %}" alt="student girl" class="quail-img"></div>
+            </div>
+        </section>
+        <section class="location">
+            <div class="about">
+                <div class="about-location-description">
+                    <span class="about-title-1">Где мы находимся?</span>
+                    <span class="about-title-2">г. Новосибирск, ул. Стартовая 1.</span>
+                    <div class="metro">Станция метро: Спортивная</div>
+                </div>
+                <div class="call">
+                    <span class="call-title">Если у вас остались вопросы, позвоните нам</span>
+                    <div class="contacts">
+                        <img src="{% static 'images/avatar.svg' %}" alt="avatar">
+                        <div class="phone-name">
+                            <span class="phonen_number">+7-900-056-05-15</span>
+                            <span class="admin-name">Максим Сергеевич, старший администратор</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-media">
+                    <div class="phone"><img src="{% static 'images/icon-phone.svg' %}" alt="icon phone"></div>
+                    <div class="telegram"><img src="{% static 'images/icon-telegram.svg' %}" alt="icon telegram"></div>
+                    <div class="vk"><img src="{% static 'images/icon-vk.svg' %}" alt="icon vk"></div>
+                </div>
+            </div>
+            <div style="position:relative;overflow:hidden;">
+                <a href="https://yandex.ru/maps/65/novosibirsk/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Новосибирск</a>
+                <a href="https://yandex.ru/maps/geo/startovaya_ulitsa_1_podyezd_20/4183388393/?ll=82.912905%2C54.996475&utm_medium=mapframe&utm_source=maps&z=17.48" style="color:#eee;font-size:12px;position:absolute;top:14px;">Яндекс Карты</a>
+                <iframe src="https://yandex.ru/map-widget/v1/?ll=82.912905%2C54.996475&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgk3NzEzNzAwNzUSWdCg0L7RgdGB0LjRjywg0J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0KHRgtCw0YDRgtC-0LLQsNGPINGD0LvQuNGG0LAsIDEsINC_0L7QtNGK0LXQt9C0IDIwIgoNqNClQhWb_ltCMOnh5coP&z=17.48" width="850" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="logo_slogan">
+                <img src="{% static 'images/planet_footer.png' %}" alt="Лого">
+                <span>© 2026 онлайн-школа «Orbita».<br>мы делаем образование доступным!</span>
+            </div>
+            <div class="contact_phone_number">
+                <span class="phone_number">8 900 056 05 15</span>
+                <span>бесплатный номер для всех регионов</span>
+            </div>
+            <div class="students_and_parents">
+                <span class="title_std_prnts">Ученикам и<br>родителям</span>
+                <ul>
+                    <li><a href="#">все школьные предметы</a></li>
+                    <li><a href="#">подготовка к предметам</a></li>
+                    <li><a href="#">методическая поддержка</a></li>
+                    <li><a href="#">отзывы и предложения</a></li>
+                </ul>
+            </div>
+            <div class="about_us">
+                <span class="title_about_us">О нас</span>
+                <ul>
+                    <li><a href="{% url 'about_page' %}">о школе</a></li>
+                    <li><a href="#">политика обработки<br>персональных данных</a></li>
+                    <li><a href="#">документы сайта</a></li>
+                    <li><a href="#">вакансии</a></li>
+                    <li><a href="#">наш блог</a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+    <script defer src="{% static 'js/about.js' %}"></script>
+</body>
+</html>

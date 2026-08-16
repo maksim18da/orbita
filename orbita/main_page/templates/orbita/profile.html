@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/orbita.css' %}">
+    <link rel="icon" href="{% static 'images/Planet.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="cabinet">
+        <a href="{% url 'home_page' %}" class="home_button">Выйти</a>
+        <div class="sidebar">
+            <div class="logo">
+                <img src="{% static 'images/Planet.png' %}" alt="Logo"><span>Orbita</span>
+            </div>
+            <nav class="list">
+                <ul>
+                    <li id="home-page">
+                        <div class="li-circle"></div>
+                        <img src="{% static 'images/home.svg' %}" alt="home-icon" width="20px" height="20px">
+                        Главная
+                    </li>
+                    <li id="chat-page">
+                        <div class="li-circle"></div>
+                        <img src="{% static 'images/chat.svg' %}" alt="chat-icon" width="20px" height="20px">
+                        Чат с преподавателем
+                    </li>
+                    <li id="schedule-page">
+                        <div class="li-circle"></div>
+                        <img src="{% static 'images/schedule.svg' %}" alt="schedule-icon" width="20px" height="20px">
+                        Расписание
+                    </li>
+                    <li id="homeworks-page">
+                        <div class="li-circle"></div>
+                        <img src="{% static 'images/homework.svg' %}" alt="homework-icon" width="20px" height="20px">
+                        Домашние<br>задания
+                    </li>
+                    <li id="materials-page">
+                        <div class="li-circle"></div>
+                        <img src="{% static 'images/materials.svg' %}" alt="materials-icon" width="20px" height="20px">
+                        Материалы
+                    </li>
+                    <li id="progress-page">
+                        <div class="li-circle"></div>
+                        <img src="{% static 'images/progress.svg' %}" alt="progress-icon" width="20px" height="20px">
+                        Успеваемость
+                    </li>
+                    <li id="profile-page">
+                        <div class="li-circle"></div>
+                        <img src="{% static 'images/profile.svg' %}" alt="profile-icon" width="20px" height="20px">
+                        Профиль
+                    </li>
+                </ul>
+            </nav>
+            <div class="brief-description">
+                <div class="circle">{{ user.initials }}</div>
+                <div class="student-info">
+                    <span id="student-name">{{ user.name }} {{ user.surname }}</span>
+                    <span id="student-plan">{{ user.grade }} · тариф «{{ user.tariff.name|default:"не выбран" }}»</span>
+                </div>
+            </div>
+        </div>
+        <main class="main-content">
+            <section class="profile">
+                <div class="title-description">
+                    <span class="title-text">Профиль</span>
+                    <span class="description-text">Данные аккаунта и тариф</span>
+                </div>
+                <div class="info-box">
+                    <div class="personal-data">
+                        <span class="title-personal-data">Личные данные</span>
+                        <div class="name">
+                            <dt>Имя</dt>
+                            <dd>{{ user.name }} {{ user.surname }}</dd>
+                        </div>
+                        <div class="line"></div>
+                        <div class="email">
+                            <dt>Email</dt>
+                            <dd>{{ user.email }}</dd>
+                        </div>
+                        <div class="line"></div>
+                        <div class="phone-number">
+                            <dt>Телефон</dt>
+                            <dd>{{ user.phone }}</dd>
+                        </div>
+                        <div class="line"></div>
+                        <div class="grade">
+                            <dt>Класс</dt>
+                            <dd>{{ user.grade }}</dd>
+                        </div>
+                    </div>
+                    <div class="tariff">
+                        <span class="title-tariff">Тариф</span>
+                        {% if user.tariff %}
+                        <div class="name">
+                            <dt>«{{ user.tariff.name }}»</dt>
+                            <dd>{{ user.tariff.subjects_count }} предмета · {{ user.tariff.lessons_per_month }} занятий в месяц</dd>
+                        </div>
+                        <div class="line"></div>
+                        <div class="subscription-period">
+                            <dt>Действует до</dt>
+                            <dd>{{ user.subscription_until|date:"d F Y"|default:"—" }}</dd>
+                        </div>
+                        {% else %}
+                        <div class="name">
+                            <dt>Тариф не выбран</dt>
+                            <dd>Оформите подписку, чтобы получить доступ к занятиям</dd>
+                        </div>
+                        {% endif %}
+                        <div class="line"></div>
+                        <button class="extend">Продлить подписку</button>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="progress">
+                <div class="title-description">
+                    <span class="title-text">Успеваемость</span>
+                    <span class="description-text">Прогресс по твоим предметам</span>
+                </div>
+                <div class="statistics-block">
+                    {% for item in progress %}
+                    <div class="subject">
+                        <div class="title-procent">
+                            <span class="title-subject">{{ item.subject }}</span>
+                            <span class="procent">{{ item.percent }}%</span>
+                        </div>
+                        <div class="progress-line" style="width: {{ item.percent }}%; background-color: var(--{{ item.subject|lower }}-color, #6E6E8F);"></div>
+                    </div>
+                    {% empty %}
+                    <p class="no-data">Данных по успеваемости пока нет</p>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="homeworks">
+                <div class="title-description">
+                    <span class="title-text">Домашние задания</span>
+                    <span class="description-text">Все задания по предметам твоего тарифа</span>
+                </div>
+
+                <div class="homework-status">
+                    <div class="all">Все <div class="count">{{ hw_all_count }}</div></div>
+                    <div class="expired">Просрочено <div class="count">{{ hw_expired_count }}</div></div>
+                    <div class="work">В работе <div class="count">{{ hw_work_count }}</div></div>
+                    <div class="verified">Проверено <div class="count">{{ hw_verified_count }}</div></div>
+                </div>
+
+                {% for hw in homeworks %}
+                <div class="task" data-status="{{ hw.status }}">
+                    <div class="homework-description">
+                        <div class="initial" style="background-color: var(--{{ hw.subject.title|lower }}-color, #6E6E8F);">
+                            {{ hw.subject.title|first }}
+                        </div>
+                        <div class="text-description">
+                            <div class="homework-name">
+                                <span class="topic">{{ hw.topic }}</span>
+                                <div class="type" style="background-color: var(--{{ hw.subject.title|lower }}-color, #6E6E8F);">
+                                    {{ hw.subject.title }}
+                                </div>
+                            </div>
+                            <span class="teacher">{{ hw.teacher_name }}</span>
+                            <div class="deadline">
+                                {% if hw.status == 'verified' %}
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7 12.25C9.8995 12.25 12.25 9.8995 12.25 7C12.25 4.1005 9.8995 1.75 7 1.75C4.1005 1.75 1.75 4.1005 1.75 7C1.75 9.8995 4.1005 12.25 7 12.25Z" stroke="#1e8a3c" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7 4.08331V6.99998L8.75 8.74998" stroke="#1e8a3c" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span class="deadline-info" style="color: #1e8a3c">Сдано и проверено: {{ hw.checked_at|date:"d.m.Y" }}</span>
+                                {% elif hw.status == 'expired' %}
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7 12.25C9.8995 12.25 12.25 9.8995 12.25 7C12.25 4.1005 9.8995 1.75 7 1.75C4.1005 1.75 1.75 4.1005 1.75 7C1.75 9.8995 4.1005 12.25 7 12.25Z" stroke="#E4463F" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7 4.08331V6.99998L8.75 8.74998" stroke="#E4463F" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span class="deadline-info" style="color: #E4463F">Срок сдачи: {{ hw.due_date|date:"d F" }} — просрочено</span>
+                                {% else %}
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7 12.25C9.8995 12.25 12.25 9.8995 12.25 7C12.25 4.1005 9.8995 1.75 7 1.75C4.1005 1.75 1.75 4.1005 1.75 7C1.75 9.8995 4.1005 12.25 7 12.25Z" stroke="#b8760a" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7 4.08331V6.99998L8.75 8.74998" stroke="#b8760a" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span class="deadline-info" style="color: #b8760a">Срок сдачи: {{ hw.due_date|date:"d F" }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="status-button">
+                        {% if hw.status == 'verified' %}
+                            <div class="status" style="background-color:#e7f8ea;color:#1e8a3c;">Оценка {{ hw.grade }}/10</div>
+                        {% elif hw.status == 'expired' %}
+                            <div class="status" style="background-color:#ffe1e1;color:#d63b3b;">Просрочено</div>
+                        {% else %}
+                            <div class="status" style="background-color:#fff2df;color:#b8760a;">В работе</div>
+                        {% endif %}
+
+                        {% if hw.teacher_file %}
+                        <a class="look" href="{{ hw.teacher_file.url }}" download>Посмотреть</a>
+                        {% endif %}
+
+                        {% if hw.status != 'verified' %}
+                        <form class="upload-form" data-homework-id="{{ hw.id }}">
+                            {% csrf_token %}
+                            <input type="file" name="file" id="file-{{ hw.id }}" hidden>
+                            <button type="button" class="download" onclick="document.getElementById('file-{{ hw.id }}').click()">
+                                {{ hw.student_file|yesno:"Заменить,Загрузить" }}
+                            </button>
+                        </form>
+                        {% else %}
+                            <button class="download" disabled style="opacity:0.5;cursor:default;">Проверено</button>
+                        {% endif %}
+                    </div>
+                </div>
+                {% empty %}
+                <p style="margin: 20px 40px; color:#6E6E8F;">Заданий пока нет.</p>
+                {% endfor %}
+            </section>
+
+            <section class="schedule">
+                <div class="title-description">
+                    <span class="title-text">Расписание занятий</span>
+                    <span class="description-text">Твои уроки на этой неделе</span>
+                </div>
+
+                <div class="week-block">
+                    <span class="current-week"></span>
+                    <div class="days">
+                        {% for day in week_lessons %}
+                            <div class="current-day"
+                                 id="{{ day.day_key }}"
+                                 style="opacity: {% if day.has_lesson %}1{% else %}0.55{% endif %};">
+                                <span class="name-day">{{ day.weekday|lower }}</span>
+                                <span class="day-number">{{ day.day }}</span>
+                                {% if day.has_lesson %}
+                                    <div class="circle-lesson"></div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    {% for day in week_lessons %}
+                        {% if day.has_lesson %}
+                            <div class="lesson" data-day="{{ day.day_key }}">
+                                <div class="date-info">
+                                    <span class="lesson-date">{{ day.weekday }}, {{ day.day }} {{ day.month }}</span>
+                                    <div class="decorative-line"></div>
+                                </div>
+
+                                {% for lesson in day.lessons %}
+                                    <div class="lesson-container">
+                                        <div class="lesson-description">
+                                            <span class="time-start">{{ lesson.time }}</span>
+                                            <div class="initial"
+                                                 style="background-color: var(--{{ lesson.subject|lower }}-color, #6E6E8F);">
+                                                {{ lesson.subject_initial }}
+                                            </div>
+                                            <div class="text-description">
+                                                <div class="lesson-name">
+                                                    <span class="topic">{{ lesson.topic }}</span>
+                                                    <div class="type"
+                                                         style="background-color: var(--{{ lesson.subject|lower }}-color, #6E6E8F);">
+                                                        {{ lesson.subject }}
+                                                    </div>
+                                                </div>
+                                                <span class="teacher">{{ lesson.teacher }}</span>
+                                            </div>
+                                        </div>
+                                        <a class="enter" href="{{ lesson.link }}" target="_blank">Войти</a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="lesson" data-day="{{ day.day_key }}">
+                                <span class="no-lesson">На выбранный день занятий нет</span>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="chat">
+                <div class="title-description">
+                    <span class="title-text">Чат с преподавателем</span>
+                    <span class="description-text">Переписка со всеми твоими преподавателями в одном месте</span>
+                </div>
+
+                <div class="chat-wrapper">
+                    <div class="chat-contacts">
+                        {% for room in chat_rooms %}
+                        <div class="chat-contact {% if forloop.first %}active{% endif %}" data-room-id="{{ room.id }}">
+                            <div class="initial" style="background-color: var(--pink-color);">{{ room.initials }}</div>
+                            <div class="contact-text">
+                                <span class="contact-name">{{ room.teacher_name }}</span>
+                                <span class="contact-last">{{ room.last_text }}</span>
+                            </div>
+                            <div class="contact-meta">
+                                <span class="contact-time">{{ room.last_time }}</span>
+                                {% if room.unread %}<span class="unread-badge">{{ room.unread }}</span>{% endif %}
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p style="padding:20px;color:#6E6E8F;">Чатов пока нет — они появятся, когда преподаватель назначит занятие</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="chat-main">
+                        <div class="chat-head" id="chatHead">
+                            {% if chat_rooms %}
+                                <div class="avatar" id="chatAvatar">{{ chat_rooms.0.initials }}</div>
+                                <div class="meta">
+                                    <span id="chatTeacherName">{{ chat_rooms.0.teacher_name }}</span>
+                                </div>
+                            {% else %}
+                                <div class="avatar" style="background: var(--blue-gray-color);">—</div>
+                                <div class="meta"><span style="color: var(--blue-gray-color);">Нет чатов</span></div>
+                            {% endif %}
+                        </div>
+                        <div class="chat-messages" id="chatMessages"></div>
+                        <form class="chat-input-row" id="chatForm">
+                            {% csrf_token %}
+                            <input type="file" id="chatFileInput" name="file" hidden>
+                            <button type="button" id="chatAttachBtn" class="attach-btn">
+                                <svg class="ic" viewBox="0 0 24 24" width="18" height="18">
+                                    <path d="M21 8.5v6a6 6 0 0 1-12 0V6a4 4 0 0 1 8 0v7a2 2 0 0 1-4 0V8"></path>
+                                </svg>
+                            </button>
+                            <input type="text" id="chatTextInput" name="text" placeholder="Напишите сообщение...">
+                            <button type="submit" class="send-btn">
+                                <svg class="ic" viewBox="0 0 24 24" width="18" height="18" stroke="#fff">
+                                    <path d="M4 12 20 4l-6 16-3-7-7-1Z"></path>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <section class="home">
+                <div class="title-description">
+                    <span class="title-text">Привет, {{ user.surname }} 👋</span>
+                    <span class="description-text">
+                        {{ today_date_formatted }} — у тебя сегодня
+                        <strong>{{ lessons_today_count }}</strong>
+                        заняти{{ lessons_today_count|pluralize:"е,я,й" }}
+                        и <strong>{{ homeworks_in_progress }}</strong>
+                        задани{{ homeworks_in_progress|pluralize:"е,я,й" }} на проверке
+                    </span>
+                </div>
+
+                <div class="lesson-homeworks">
+                    <div class="next-lesson">
+                        {% if next_lesson %}
+                            <div class="next-lesson-title">
+                                <div class="green-circle"></div>
+                                <span>
+                                    {% if next_lesson.is_today %}
+                                        следующее занятие
+                                    {% else %}
+                                        ближайшее занятие
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="next-lesson-about">
+                                <span class="topic">{{ next_lesson.subject }} — {{ next_lesson.topic }}</span>
+                                <div class="info">
+                                    <span>📅 {{ next_lesson.date_formatted }}</span>
+                                    <span>💻 Онлайн</span>
+                                </div>
+                                <div class="teacher-join">
+                                    <div class="teacher">
+                                        <div class="initials">{{ next_lesson.teacher_initials }}</div>
+                                        <span class="teacher-name">{{ next_lesson.teacher }}</span>
+                                    </div>
+                                    <a href="{{ next_lesson.link }}" target="_blank" class="join-lesson">Присоединиться к уроку</a>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="next-lesson-title">
+                                <div class="green-circle"></div>
+                                <span>ближайшее занятие</span>
+                            </div>
+                            <div class="next-lesson-about">
+                                <span class="topic" style="color: var(--white-color);">Нет запланированных занятий</span>
+                                <div class="info">
+                                    <span>📅 Занятия появятся после назначения</span>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="homeworks-block">
+                        <div class="title-open">
+                            <span class="title">Домашние задания</span>
+                            <a class="open" id="open-homeworks">открыть →</a>
+                        </div>
+                        <div class="tasks-list">
+                            {% for hw in recent_homeworks %}
+                                <div class="task-{{ forloop.counter }}">
+                                    <div class="status-circle" style="background-color: {{ hw.status_color }};"></div>
+                                    <div class="task-status">
+                                        <span class="task-topic">{{ hw.subject }} · {{ hw.topic }}</span>
+                                        <span class="text-status" style="color: {{ hw.status_color }};">
+                                            {% if hw.status == 'verified' %}
+                                                Проверено — {{ hw.grade }}/10
+                                            {% else %}
+                                                {{ hw.status_label }}
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </div>
+                                {% if not forloop.last %}<div class="line"></div>{% endif %}
+                            {% empty %}
+                                <div class="task-status">
+                                    <span class="text-status" style="color: var(--blue-gray-color);">Нет активных заданий</span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="statistics">
+                    <div class="average-score">
+                        <span class="numeric">{{ avg_grade }}%</span>
+                        <span class="explanation">Средний балл за месяц</span>
+                        <div class="month-progress">
+                            {% if progress_delta > 0 %}
+                                +{{ progress_delta }}% за {{ current_month|lower }}
+                            {% elif progress_delta < 0 %}
+                                {{ progress_delta }}% за {{ current_month|lower }}
+                            {% else %}
+                                {{ progress_delta }}% за {{ current_month|lower }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="lessons-completed">
+                        <span class="numeric">{{ lessons_count }}</span>
+                        <span class="explanation">Занятий проведено</span>
+                        <div class="objects">{{ subjects_count }} предмета</div>
+                    </div>
+                    <div class="overdue-homeworks">
+                        <span class="numeric">{{ expired_count }}</span>
+                        <span class="explanation">Просроченное дз</span>
+                        <div class="overdue-status">
+                            {% if expired_count > 0 %}
+                                нужно сдать
+                            {% else %}
+                                всё в порядке ✅
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="schedule-chat">
+                    <div class="schedule-block">
+                        <div class="title-open">
+                            <span class="title">Расписание на неделю</span>
+                            <a class="open" id="open-schedule">открыть →</a>
+                        </div>
+                        <div class="lesson-list">
+                            {% for item in upcoming_lessons %}
+                                <div class="lesson-{{ forloop.counter }}">
+                                    <div class="lesson-date">
+                                        <span>{{ item.day.day }}</span>{{ item.day.month|slice:":3"|lower }}
+                                    </div>
+                                    <div class="lesson-status">
+                                        <span class="lesson-topic">{{ item.lesson.subject }}</span>
+                                        <span class="time">{{ item.lesson.time }} · {{ item.lesson.teacher }}</span>
+                                    </div>
+                                    <div class="lesson-day">
+                                        {% if item.day.date == today %}сегодня{% else %}{{ item.day.weekday|lower }}{% endif %}
+                                    </div>
+                                </div>
+                                {% if not forloop.last %}<div class="line"></div>{% endif %}
+                            {% empty %}
+                                <div class="task-status">
+                                    <span class="text-status" style="color: var(--blue-gray-color);">Нет занятий на этой неделе</span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="chat-block">
+                        <div class="title-open">
+                            <span class="title">Сообщения</span>
+                            <a class="open" id="open-chat">открыть →</a>
+                        </div>
+                        <div class="tasks-list">
+                            {% for room in chat_rooms|slice:":3" %}
+                                <div class="task-{{ forloop.counter }}">
+                                    <div class="status-circle" style="background-color: {% if room.unread > 0 %}var(--pink-color){% else %}#cecedb{% endif %};"></div>
+                                    <div class="task-status">
+                                        <span class="task-topic">{{ room.teacher_name }}</span>
+                                        <span class="text-status" style="color: var(--blue-gray-color);">
+                                            {% if room.unread > 0 %}
+                                                <strong style="color: var(--pink-color);">{{ room.unread }} нов{{ room.unread|pluralize:"ое,ых" }}</strong>
+                                            {% else %}
+                                                {{ room.last_text }}
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </div>
+                                {% if not forloop.last %}<div class="line"></div>{% endif %}
+                            {% empty %}
+                                <div class="task-status">
+                                    <span class="text-status" style="color: var(--blue-gray-color);">Нет сообщений</span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script defer src="{% static 'js/main.js' %}"></script>
+    <script defer src="{% static 'js/profile.js' %}"></script>
+</body>
+</html>

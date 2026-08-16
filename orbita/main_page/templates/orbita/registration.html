@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbita</title>
+    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+    <link rel="icon" href="{% static 'images/Planet.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="landinge_page">
+            <nav class="header">
+                <div class="header_logo">
+                    <img src="{% static 'images/Planet.png' %}" alt="Logo">
+                    <a href="{% url 'home_page' %}"><span>Orbita</span></a>
+                </div>
+                <div class="header_menu">
+                    <ul>
+                        <li><a href="{% url 'about_page' %}">О школе</a></li>
+                        <li><a href="{% url 'home_page' %}#tariffs">Тарифы</a></li>
+                        <li><a href="{% url 'about_page' %}#reviews">Отзывы</a></li>
+                        <li class="mobile-hide">
+                            <div class="popover_block">
+                                <a>Контакты</a>
+                                <div class="popover">
+                                    <ul>
+                                        <li>
+                                            <div class="network">
+                                                <a href="https://t.me/frozZymen"><img src="{% static 'images/telegram.png' %}" alt="telegram logo">telegram</a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="network">
+                                                <a href="https://api.whatsapp.com/send?phone=79000560515"><img src="{% static 'images/whatsapp.png' %}" alt="whatsapp logo">whatsapp</a>
+                                            </div>
+                                        </li>
+                                        <li class="copy-block" data-copy="+7-900-056-05-15">+7(900)056-05-15</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="{% url 'home_page' %}" class="home_button">На главную</a>
+                </div>
+            </nav>
+        </header>
+
+        <div class="registration_block">
+            <div class="background">
+                <div class="visual">
+                    <div class="title">
+                        <span>Начни обучение<br>вместе с нами!</span>
+                    </div>
+                    <img src="{% static 'images/schoolboy.png' %}" alt="schoolboy" class="schoolboy">
+                    <img src="{% static 'images/star.png' %}" alt="star" class="star" id="start1">
+                    <img src="{% static 'images/star.png' %}" alt="star" class="star" id="start2">
+                    <img src="{% static 'images/star.png' %}" alt="star" class="star" id="start3">
+                    <img src="{% static 'images/star.png' %}" alt="star" class="star" id="start4">
+                </div>
+
+                <div class="form">
+                    <div class="form_content">
+                        <div class="selection">
+                            <div class="registration selected">Регистрация</div>
+                            <div class="login">Вход</div>
+                        </div>
+
+                        <div class="registration_page">
+                            <form method="post" action="{% url 'registration' %}">
+                                {% csrf_token %}
+                                <div class="data">
+                                    <input type="text" class="input-field" name="surname" id="text1" placeholder="Фамилия" minlength="1" value="{{ form.surname.value|default:'' }}">
+                                    <p class="error-message" id="error-text1">
+                                        {% if form.surname.errors %}
+                                            {{ form.surname.errors.0 }}
+                                        {% endif %}
+                                    </p>
+
+                                    <input type="text" class="input-field" name="name" id="text2" placeholder="Имя" value="{{ form.name.value|default:'' }}">
+                                    <p class="error-message" id="error-text2">
+                                        {% if form.name.errors %}
+                                            {{ form.name.errors.0 }}
+                                        {% endif %}
+                                    </p>
+
+                                    <input type="email" class="input-field" name="email" id="email" placeholder="Email" required value="{{ form.email.value|default:'' }}">
+                                    <p class="error-message" id="error-mail">
+                                        {% if form.email.errors %}
+                                            {{ form.email.errors.0 }}
+                                        {% endif %}
+                                    </p>
+
+                                    <input type="text" class="input-field" name="phone" id="phone" placeholder="Телефон" value="{{ form.phone.value|default:'' }}">
+                                    <p class="error-message" id="error-phone">
+                                        {% if form.phone.errors %}
+                                            {{ form.phone.errors.0 }}
+                                        {% endif %}
+                                    </p>
+
+                                    <input type="password" class="input-field" name="password" id="password" placeholder="Пароль от 6 символов">
+                                    <p class="error-message" id="error-password">
+                                        {% if form.password.errors %}
+                                            {{ form.password.errors.0 }}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                                <div class="personal_data">
+                                    <input type="checkbox" class="checkbox" checked>
+                                    <span>Я подтверждаю своё согласие с условиями<br>
+                                        публичной оферты и согласен на обработку<br>
+                                        персональных данных в соответствии с политикой конфиденциальности
+                                    </span>
+                                </div>
+                                <button type="submit" class="button-submit">Регистрация</button>
+                            </form>
+
+
+                            <div class="confirm">
+                                <span>Ваша заявка принята!<br>Мы свяжемся с вами в ближайшее время.</span>
+                            </div>
+                        </div>
+
+                        <div class="login_page">
+                            <input type="text" class="input-field" name="phone" id="login_phone" placeholder="Телефон">
+                            <input type="password" class="input-field" name="password" id="login_password" placeholder="Пароль">
+                            <input type="password" class="input-field" name="confirm_password" id="confirm_password" placeholder="Повторите пароль" style="display:none;">
+                            <p class="error-message" id="error-reset-password"></p>
+                            <div class="login_confirm">
+                                <button type="button" class="button-login">Вход</button>
+                                <span class="forgot_password">Забыли пароль?</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script defer src="{% static 'js/registration.js' %}"></script>
+</body>
+</html>

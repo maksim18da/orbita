@@ -1,0 +1,47 @@
+{% load static %}
+<form class="Contacts" method="post" action="{% url 'contact' %}">
+    {% csrf_token %}
+    <button type="button" class="close-btn" aria-label="Закрыть">&times;</button>
+    <div class="header_popup">
+        <div class="title_and_description">
+            <span class="title_popup">Контактные данные</span>
+            <span class="description_popup">заполните форму и мы с вами свяжемся</span>
+        </div>
+    </div>
+    <div class="headers_fields">
+        <div class="surname">
+            <span class="headers_popup">Фамилия</span>
+            <div class="input-box">
+                {{ form.surname }}
+            </div>
+        </div>
+        <div class="name">
+            <span class="headers_popup">Имя</span>
+            <div class="input-box">
+                {{ form.name }}
+            </div>
+        </div>
+        <div class="phone">
+            <span class="headers_popup">Телефон</span>
+            <div class="input-box">
+                {{ form.phone_number }}
+            </div>
+        </div>
+        <div class="messenger">
+            <span class="headers_popup">Мессенджер</span>
+            <div class="input-box">
+                {{ form.messenger }}
+            </div>
+        </div>
+    </div>
+    <div class="personal_data">
+        <div class="input">
+            <input type="checkbox" required><span>Согласен с <a href="#">политикой конфиденциальности</a></span>
+        </div>
+        <div class="input">
+            <input type="checkbox" required><span>Соглаcен на <a href="#">обработку персональных данных</a></span>
+        </div>
+    </div>
+    <button type="submit" class="button_popup">Отправить</button>
+</form>
+<script src="{% static 'js/form.js' %}"></script>
