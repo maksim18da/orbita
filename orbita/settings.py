@@ -16,6 +16,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '.vercel.app',
     'orbitaschool.pythonanywhere.com',
+    'orbita-school.vercel.app',
 ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
