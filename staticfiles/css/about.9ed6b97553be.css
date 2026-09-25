@@ -1,0 +1,1057 @@
+.about-page1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 700px;
+    overflow: hidden;
+    position: relative;
+}
+.visual{
+    position: relative;
+    width: 643px;
+    height: 741px;
+}
+.visual.animate{
+    animation: appearance 0.8s ease-out;
+}
+@keyframes appearance {
+    from{
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.blur, .schoolgirl{
+    position: absolute;
+}
+.blur{
+    top: -30px;
+    left: 2px;
+}
+.schoolgirl{
+    top: 95px;
+    left: 107px;
+}
+.study{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: -50px;
+    margin-right: 100px;
+}
+.headline.animate{
+    animation: swimming-out 0.5s ease-out;
+}
+.study-description.animate{
+    animation: swimming-out 1s ease-out;
+}
+.buttons.animate{
+    animation: swimming-out 1.5s ease-out;
+}
+@keyframes swimming-out{
+    from{
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to{
+        opacity: 1;
+    }
+}
+.headline{
+    font-size: 50px;
+    font-weight: 800;
+    text-align: center;
+    line-height: 120%;
+    color: #000083;
+}
+.headline br{
+    display: none;
+}
+.study-description{
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 130%;
+}
+.buttons{
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+.study-btn{
+    font-family: 'Manrope';
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 110%;
+    color: #FFFFFF;
+    border: 0;
+    background: linear-gradient(45deg, #E700C8, #FF00DD);
+    border-radius: 20px;
+    padding: 20px 20px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.study-btn:hover {
+    background: linear-gradient(45deg, #FF00DD, #E700C8);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(231, 0, 200, 0.3);
+}
+.study-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 5px 10px rgba(231, 0, 200, 0.2);
+    background: linear-gradient(45deg, #CC00B4, #E600C8);
+}
+.earth{
+    position: absolute;
+    right: -10%;
+    bottom: -45%;
+    width: 516px;
+    height: 500px;
+}
+.advantages_block{
+    width: 100%;
+    height: 172px;
+    background-color: #F612D8;
+    display: flex;
+    align-items: center;
+    gap: 67px;
+    justify-content: center;
+}
+.advantage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.advantage-title, .advantage-details{
+    line-height: 110%;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+.advantage-title{
+    font-size: 60px;
+}
+.advantage-details{
+    font-size: 20px;
+}
+.vertical-line, .horizontal-line{
+    border: 1px solid #f0e4e4d8;
+    height: 92px;
+    width: 0;
+    border-radius: 20px;
+}
+.horizontal-line{
+    display: none;
+    width: 100%;
+    height: 0;
+}
+.hybrid-learning{
+    position: relative;
+}
+.description{
+    margin: 100px 0px 0px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.explanatory-title{
+    font-size: 20px;
+    line-height: 110%;
+    color: #F612D8;
+    font-weight: 600;
+}
+.main-title{
+    font-size: 40px;
+    line-height: 120%;
+    color:#000083;
+    font-weight: 800;
+}
+.about-text{
+    font-size: 20px;
+    line-height: 130%;
+    font-weight: 500;
+    color: #5E5959;
+}
+.benefit-cards{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+.online-training, .personally {
+    max-width: 492px;
+    height: 500px;
+    background-color: #A400FF;
+    border-radius: 20px;
+    box-shadow: 0px 0px 40px #423A3A25;
+    transition: transform 0.5s ease-out;
+}
+.personally{
+    background-color: #F612D8;
+}
+.rocket_img {
+    position: absolute;
+    top: -10%;
+    left: 8%;
+    z-index: -1;
+}
+.mask-group-1 {
+    width: 492px;
+    height: 289px;
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+}
+.mask-group-1 img {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    scale: calc(1.2);
+}
+.personally .mask-group-1 img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    scale: calc(1);
+}
+.about-online-training, .about-personally{
+    margin: 15px 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.online{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 20px;
+    border: 1px solid #EBE1E1;
+    background-color: #FBF4F420;
+    color: #F8F2F2;
+    font-weight: 600;
+    line-height: 110%;
+    font-size: 15px;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    width: fit-content;
+}
+.about-online-training .circle, .about-personally .circle{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #76E54E;
+}
+.about-personally .circle{
+    background-color: #FFFFFF;
+}
+.about-online-training span,.about-personally span, .li{
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 110%;
+    letter-spacing: -0.03em;
+    color: #F8F2F2;
+    width: fit-content;
+}
+.about-personally br{
+    display: none;
+}
+.online-training:hover, .personally:hover{
+    transform: translateY(-3px);
+}
+.ul{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.li{
+    display: flex;
+    gap: 10px;
+}
+.cirle_ol{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.teachers-orbita{
+    min-height: 800px;
+    overflow: hidden;
+    position: relative;
+}
+.cards{
+    margin-top: 30px;
+    margin-left: 110px;
+    display: flex;
+    gap: 40px;
+    transition: transform 0.5s ease-out;
+}
+@keyframes shake-back {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+.cards.shake-back, .reviews-track.shake-back {
+    animation: shake-back 0.5s ease-out;
+}
+.teacher-card{
+    max-width: 345px;
+    height: 480px;
+    background-color: #FBFBFD;
+    border: 1px solid #00000020;
+    box-shadow: 0px 0px 20px #00000020;
+    border-radius: 20px;
+    transition: transform 0.5s ease-out;
+}
+.teacher-card:hover{
+    transform: translateY(-3px);
+}
+.mask-group-2{
+    width: 305px;
+    height: 261px;
+    border-radius: 20px;
+    background-color: #D0CEFF;
+    position: relative;
+    overflow: hidden;
+    margin: 20px 20px 10px 20px;
+}
+.mask-group-2 img{
+    position: absolute;
+    top: 70px;
+    left: -5px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    scale: calc(1.5);
+}
+.about-teacher{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 20px;
+}
+.experience{
+    background-color: #F612D8;
+    color: #FBFBFD;
+    border-radius: 20px;
+    width: fit-content;
+    padding: 5px 10px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 110%;
+}
+.name-position{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-width: 209px;
+}
+.name{
+    font-size: 20px;
+    color: #000083;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    width: fit-content;
+}
+.position{
+    font-size: 15px;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    color: #5E5959;
+    width: fit-content;
+}
+.specialized-subjects{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 209px;
+}
+.box{
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 110%;
+    color: #F612D8;
+    border-radius: 20px;
+    border: 1px solid #D2CFCF;
+    background-color: #E7E6FF20;
+    padding: 5px 10px;
+}
+.new-teacher{
+    height: 480px;
+    border: 2px dashed black;
+    border-radius: 20px;
+    background-color: #FBFBFD50;
+    box-shadow: 0px 0px 20px #00000020;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0px 33px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    color: #000083;
+    flex-shrink: 0;
+    transition: transform 0.5s ease-out;
+}
+.new-teacher:hover{
+    transform: translateY(-3px);
+}
+.back,.forward{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #000083;
+    position: absolute;
+}
+.back{
+    top: 61%;
+    left: 40px;
+}
+.forward{
+    top: 61%;
+    right: 40px;
+}
+.back:hover,.forward:hover{
+    cursor: pointer;
+    background-color: #0000c7;
+}
+.back:active,.forward:active{
+    transform: translateY(-1px);
+}
+.mobile-arrow{
+    display: none;
+}
+.forward img{
+    transform: scaleX(-1);
+}
+.students-reviews{
+    position: relative;
+}
+.students-reviews .description{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+.reviews{
+    overflow: hidden;
+    padding: 80px 50px;
+    display: flex;
+    justify-content: center;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+.reviews-track{
+    display: flex;
+    gap: 24px;
+    transition: transform 0.5s ease-out;
+}
+.reviews-box{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 376px;
+    background-color: #FFFFFF80;
+    padding: 30px;
+    border-radius: 24px;
+    border: 1px solid #CBC0FF50;
+    box-shadow: 0px 8px 24px #00008305;
+    flex-shrink: 0;
+    margin: 0;
+}
+.reviews-box:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 10px #e6c4f8;
+}
+.about-student{
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+.student-name{
+    font-size: 18px;
+    font-weight: 700;
+    color: #000083;
+}
+.grade-subject{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.grade{
+    border-radius: 6px;
+    background-color: #FD2AE510;
+    border: 2px solid #FD2AE525;
+    font-size: 13px;
+    font-weight: 700;
+    color: #FD2AE5;
+    padding: 4px 10px;
+}
+.subject{
+    border-radius: 20px;
+    background-color: #406CFF12;
+    border: 2px solid #406CFF25;
+    font-size: 13px;
+    font-weight: 600;
+    color: #406CFF;
+    padding: 6px 12px;
+}
+.review-description{
+    font-size: 15px;
+    line-height: 150%;
+    font-weight: 500;
+    color: #272752;
+}
+.students-reviews .back, .students-reviews .forward{
+    top: 59%;
+}
+.reviews-box.active{
+    border: 2px solid #CBC0FF;
+    box-shadow: 0px 16px 40px #A400FF17;
+    transform: scale(1.1);
+    margin: 0px 10px 0px 10px;
+}
+.introductory-lesson{
+    display: flex;
+    gap: 29px;
+    position: relative;
+}
+.introductory-lesson .ul .li{
+    color: #F612D8;
+}
+.benefits-buttons{
+    margin: 20px 0px 0px 40px;
+}
+.mobile_br{
+    display: none;
+}
+.benefits-buttons .buttons{
+    padding-top: 10px;
+}
+.introductory-lesson .description{
+    margin-top: 217px;
+}
+.background{
+    position: absolute;
+    filter: blur(100px);
+    background-color: #EFD2FF;
+    width: 698px;
+    height: 698px;
+    border-radius: 50%;
+    z-index: -1;
+    right: 100px;
+    top: 150px;
+}
+.mask-group-3{
+    width: 620px;
+    height: 644px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+.quail-img{
+    width: 580px;
+    height: 627px;
+    position: absolute;
+    top: 29px;
+    left: 41px;
+}
+.introductory-lesson-visual{
+    margin-top: 100px;
+}
+.location{
+    margin-top: 200px;
+    margin-left: 40px;
+    margin-bottom: 100px;
+    display: flex;
+    gap: 10px;
+}
+.about{
+    width: 570px;
+    height: 400px;
+    background-color: #F612D8;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.about-location-description{
+    margin-top: 30px;
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.call{
+    margin-top: 56px;
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.social-media{
+    margin-top: 27px;
+    margin-left: 40px;
+    display: flex;
+    gap: 15px;
+    width: fit-content;
+}
+.about-title-1, .about-title-2, .metro, .phonen_number, .call-title, .admin-name{
+    font-weight: 800;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    color: #F8F2F2;
+    width: fit-content;
+}
+.about-title-1{
+    font-size: 40px;
+}
+.about-title-2, .phonen_number, .call span{
+    font-size: 20px;
+}
+.metro{
+    background-color: #F8F2F2;
+    color: #A400FF;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 20px;
+    width: fit-content;
+}
+.contacts{
+    display: flex;
+    width: fit-content;
+    gap: 10px;
+}
+.phone-name{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: fit-content;
+}
+.admin-name{
+    font-weight: 600;
+    font-size: 15px;
+    color: #F0E1E1;
+}
+.whatsapp, .telegram, .vk{
+    width: 40px;
+    height: 40px;
+    border-radius: 15px;
+    background-color: #A400FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.whatsapp:hover, .telegram:hover, .vk:hover{
+    cursor: pointer;
+    scale: calc(1.05);
+}
+iframe{
+    border: none;
+    border-radius: 20px;
+}
+@media screen and (max-width: 480px) {
+    .about-page1{
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: static;
+        overflow: hidden;
+        margin: 0px 16px;
+    }
+    .study{
+        display: contents;
+        margin: 0;
+    }
+    .headline{
+        font-size: 32px;
+        font-weight: 900;
+        line-height: 120%;
+        order: 1;
+    }
+    .study-description{
+        font-size: 15px;
+        order: 2;
+        margin-top: 16px;
+    }
+    .visual{
+        width: 100%;
+        height: 371px;
+        order: 3;
+    }
+    .schoolgirl{
+        position: relative;
+        width: 270px;
+        height: 100%;
+        top: 7%;
+        left: 5%;
+    }
+    .blur{
+        position: absolute;
+        width: 343px;
+        height: 360px;
+        top: 10%;
+        left: 0%;
+    }
+    .earth{
+        display: none;
+    }
+    .headline{
+        font-size: 32px;
+        font-weight: 900;
+        line-height: 120%;
+    }
+    .headline br{
+        display: block;
+    }
+    .study-description{
+        font-size: 15px;
+    }
+    .study-description br{
+        display: none;
+    }
+    .buttons{
+        padding-top: 50px;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 0;
+        order: 4;
+        width: 100%;
+    }
+    .study-btn, .study-btn.open-form{
+        font-size: 16px;
+        border-radius: 16px;
+        padding: 16px 20px;
+    }
+    .advantages_block{
+        margin-top: 32px;
+        margin-bottom: 30px;
+        height: auto;
+        gap: 23px;
+        padding: 24px 16px;
+    }
+    .advantage-title{
+        font-size: 32px;
+    }
+    .advantage-details{
+        font-size: 13px;
+    }
+    .advantage{
+        gap: 4px;
+    }
+    .vertical-line{
+        height: 40px;
+    }
+    .vertical-line#line-2{
+        display: none;
+    }
+    .horizontal-line{
+        display: block;
+    }
+    .hybrid-learning{
+        display: flex;
+        flex-direction: column;
+    }
+    .hybrid-learning, .benefit-cards, .teachers-orbita{
+        margin: 30px 16px;
+    }
+    .description{
+        margin: 0;
+        gap: 8px;
+    }
+    .explanatory-title, .about-text{
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .main-title{
+        font-size: 25px;
+    }
+    .about-text br{
+        display: none;
+    }
+    .rocket_img{
+        display: none;
+    }
+    .benefit-cards{
+        margin: 24px 0 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    .online-training, .personally {
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+    }
+    .advantages_block{
+        height: auto;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        grid-template-rows: auto auto auto;
+        row-gap: 24px;
+        column-gap: 16px;
+    }
+    .advantage:nth-child(1){ grid-column: 1; grid-row: 1; }
+    .advantage:nth-child(3){ grid-column: 3; grid-row: 1; }
+    .advantage:nth-child(6){ grid-column: 1; grid-row: 3; }
+    .advantage:nth-child(8){ grid-column: 3; grid-row: 3; }
+    #line-1{
+        grid-column: 2; grid-row: 1;
+    }
+    #line-3{
+        grid-column: 2; grid-row: 3;
+    }
+    .horizontal-line{
+        display: block;
+        grid-column: 1 / 4;
+        grid-row: 2;
+    }
+    .mask-group-1 {
+        width: 100%;
+        height: 200px;
+    }
+    .online{
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+    .circle{
+        width: 8px;
+        height: 8px;
+    }
+    .about-online-training, .about-personally{
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .about-online-training span,.about-personally span{
+        font-size: 18px;
+    }
+    .about-personally br{
+        display: block;
+    }
+    .li{
+        align-items: center;
+        font-size: 14px;
+    }
+    .cirle_ol{
+        width: 22px;
+        height: 22px;
+    }
+    .teachers-orbita{
+        min-height: auto;
+    }
+    .teacher-card, .new-teacher{
+        box-shadow: none;
+    }
+    .desktop-arrow{
+        display: none;
+    }
+    .mobile-arrow{
+        display: block;
+    }
+    .back,.forward{
+        width: 33px;
+        height: 33px;
+    }
+    .back{
+        top: 58%;
+        left: 0;
+    }
+    .forward{
+        top: 58%;
+        right: 0;
+    }
+    .students-reviews .back{
+        top: 58%;
+        left: 16px;
+    }
+    .students-reviews .forward{
+        top: 58%;
+        right: 16px;
+    }
+    .cards{
+        margin-top: 30px;
+        margin-left: 45px;
+        gap: 20px;
+    }
+    .teacher-card, .new-teacher{
+        width: 256px;
+        height: auto;
+        padding: 16px;
+    }
+    .mask-group-2{
+        width: 224px;
+        height: 220px;
+        margin: 0;
+    }
+    .mask-group-2 img{
+        top: 40px;
+        left: -5px;
+        scale: calc(1.3);
+    }
+    .about-teacher{
+        margin: 10px 0 0 0;
+    }
+    .experience{
+        font-size: 12px;
+    }
+    .name-position{
+        gap: 0;
+    }
+    .name{
+        font-size: 18px;
+    }
+    .position{
+        color: #5E5959;
+        font-size: 13px;
+    }
+    .box{
+        font-size: 12px;
+    }
+    .specialized-subjects{
+        gap: 6px;
+    }
+    .new-teacher{
+        text-align: center;
+    }
+    .students-reviews, .introductory-lesson, .location{
+        padding: 30px 16px;
+    }
+    .students-reviews{
+        position: relative;
+    }
+    .students-reviews .description{
+        margin: 0;
+        gap: 8px;
+    }
+    .reviews{
+        justify-content: flex-start;
+        padding: 0 0 0 44px;
+        margin-top: 24px;
+    }
+    .reviews:hover{
+        box-shadow: none;
+    }
+    .reviews-box{
+        gap: 12px;
+        width: 256px;
+        padding: 20px;
+        height: 465px;
+        border-radius: 20px;
+    }
+    .reviews-box.active{
+        border: none;
+        box-shadow: none;
+        transform: none;
+        margin: 0;
+    }
+    .introductory-lesson{
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    .introductory-lesson .about-text .desktop_br{
+        display: none;
+    }
+    .mobile_br{
+        display: block !important;
+    }
+    .introductory-lesson .description{
+        margin-top: 0;
+    }
+    .benefits-buttons{
+        margin: 24px 0 0 0;
+    }
+    .text, .benefits-buttons{
+        display: contents;
+    }
+    .ul{
+        gap: 8px;
+    }
+    .background{
+        width: 100%;
+        height: 319px;
+        top: 42%;
+        left: 10%;
+    }
+    .mask-group-3{
+        width: 100%;
+        height: 294px;
+    }
+    .quail-img{
+        width: 275px;
+        height: 297px;
+    }
+    .introductory-lesson-visual{
+        margin-top: 0;
+    }
+    .location{
+        display: flex;
+        gap: 10px;
+        margin: 0;
+    }
+    .yandex_map{
+        display: none;
+    }
+    .about{
+        width: auto;
+        height: auto;
+        padding: 24px;
+        margin: 0;
+    }
+    .about-location-description{
+        margin: 0;
+        gap: 12px;
+    }
+    .about-title-1{
+        font-size: 24px;
+    }
+    .about-title-2, .phonen_number, .call span{
+        font-size: 16px;
+    }
+    .metro{
+        width: 100%;
+        padding: 8px 12px;
+        font-size: 14px;
+        text-align: center;
+    }
+    .call{
+        margin: 20px 0 0 0;
+    }
+    .contacts img{
+        width: 40px;
+        height: 40px;
+    }
+    .phone-name{
+        gap: 2px;
+    }
+    .admin-name{
+        font-size: 12px !important;
+        font-weight: 400;
+    }
+    .social-media{
+        margin: 15px 0 0 0;
+        gap: 12px;
+    }
+}
