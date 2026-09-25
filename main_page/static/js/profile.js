@@ -129,56 +129,68 @@ document.addEventListener('DOMContentLoaded', ()=>{
     });
 
     function current_week(){
-        let current_Month_number = new Date().getMonth()
         let month_name = [
-            'Января', 'Февраля', 'Марта', 'Апреля',
-            'Мая', 'Июня', 'Июля', 'Августа',
-            'Сентября', 'Октября', 'Ноября', 'Декабря'
+            'января', 'февраля', 'марта', 'апреля',
+            'мая', 'июня', 'июля', 'августа',
+            'сентября', 'октября', 'ноября', 'декабря'
         ]
-        let today = [
+        let days_names = [
             'monday', 'tuesday', 'wednesday',
             'thursday', 'friday', 'saturday', 'sunday'
         ]
         let dayJS = new Date().getDay()
         let day = (dayJS == 0 ? 7 : dayJS)
-        let k, n
-        k = day == 1 ? 0 : day-1
-        n = day == 7 ? 0 : 7 - day
-        let monday_date = new Date((Date.now() - k * 86400000)).getDate()
-        let sunday_date = new Date((Date.now() + n * 86400000)).getDate()
-        return [monday_date, sunday_date, month_name[current_Month_number], today[day-1]]
-    }
 
-    document.querySelector('.current-week').textContent = `${current_week()[0]} – ${current_week()[1]} ${current_week()[2]}`
-    let arr = []
-    for (let i = current_week()[0]; i <= current_week()[1]; i++){
-        arr.push(i)
+        let monday = new Date()
+        monday.setHours(0, 0, 0, 0)
+        monday.setDate(monday.getDate() - (day - 1))
+
+        let weekDates = []
+        for (let i = 0; i < 7; i++) {
+            let d = new Date(monday)
+            d.setDate(monday.getDate() + i)
+            weekDates.push(d)
+        }
+
+        let mondayDate = weekDates[0]
+        let sundayDate = weekDates[6]
+
+        return {
+            weekDates,               // [Date, Date, ... x7]
+            mondayDay: mondayDate.getDate(),
+            sundayDay: sundayDate.getDate(),
+            mondayMonth: month_name[mondayDate.getMonth()],
+            sundayMonth: month_name[sundayDate.getMonth()],
+            todayName: days_names[day - 1]
+        }
     }
-    document.querySelectorAll('.day-number').forEach((day, index) =>{
-        day.textContent = arr[index]
+    let week = current_week()
+    let weekLabel = (week.mondayMonth === week.sundayMonth)
+        ? `${week.mondayDay} – ${week.sundayDay} ${week.sundayMonth}`
+        : `${week.mondayDay} ${week.mondayMonth} – ${week.sundayDay} ${week.sundayMonth}`
+
+    document.querySelector('.current-week').textContent = weekLabel
+    document.querySelectorAll('.day-number').forEach((day, index) => {
+        day.textContent = week.weekDates[index].getDate()
     })
-
-    let previosDay = null
     let current_day = document.querySelectorAll('.current-day')
     current_day.forEach(day =>{
         day.addEventListener('click', elem=>{
             let current = elem.currentTarget
-            if (previosDay  == current){
+            if (previos == current){
                 return
             }
-            if(previosDay ){
-                previosDay .classList.remove('active')
+            if(previos){
+                previos.classList.remove('active')
             }
             current.classList.add('active')
-            previosDay  = current
+            previos = current
         })
     })
-
     let days = document.querySelectorAll('.current-day')
     let lessons = document.querySelectorAll('.lesson')
-    let today = current_week()[3]
-
     days.forEach(day=>{
+        let today = current_week().todayName
         if(today == day.id) {
             lessons.forEach(lesson=>{
                 if (lesson.dataset.day == `${today}`) {lesson.classList.add('active')}
@@ -186,15 +198,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
             day.style.background = 'var(--dark-blue)'
             day.querySelectorAll('span').forEach(elem=>{
                 elem.style.color = 'var(--white-color)'
-            })
-            lessons.forEach(lesson => {
-                if (lesson.dataset.day == today) {
-                    lesson.classList.add('active')
-                    let noLesson = lesson.querySelector('.no-lesson')
-                    if (noLesson) {
-                        noLesson.classList.add('active')
-                    }
-                }
             })
         }
         day.addEventListener('click', elem =>{
@@ -218,12 +221,27 @@ document.addEventListener('DOMContentLoaded', ()=>{
         box.innerHTML = '';
         messages.forEach(m => {
             const div = document.createElement('div');
+            // sender_type === 'student' -> "out" (ученик, слева), иначе "in" (учитель, справа)
             div.className = 'chat-msg ' + (m.sender_type === 'student' ? 'out' : 'in');
+
+            const textEl = document.createElement('span');
+            textEl.className = 'msg-text';
             if (m.file_url){
-                div.innerHTML = `<a href="${m.file_url}" target="_blank" style="color:inherit;">${m.file_name}</a><small>${m.time}</small>`;
+                const link = document.createElement('a');
+                link.href = m.file_url;
+                link.target = '_blank';
+                link.textContent = m.file_name;
+                textEl.appendChild(link);
             } else {
-                div.innerHTML = `${m.text}<small>${m.time}</small>`;
+                textEl.textContent = m.text;
             }
+
+            const timeEl = document.createElement('span');
+            timeEl.className = 'msg-time';
+            timeEl.textContent = m.time;
+
+            div.appendChild(textEl);
+            div.appendChild(timeEl);
             box.appendChild(div);
         });
         box.scrollTop = box.scrollHeight;

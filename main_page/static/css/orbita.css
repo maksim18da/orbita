@@ -20,6 +20,10 @@ body.loaded {
 @view-transition{
     navigation: auto;
 }
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
 ::-webkit-scrollbar{
     background-color: #fbddfa;
     width: 10px;
@@ -34,13 +38,15 @@ body.loaded {
     position: relative;
     width: 100%;
 }
-
 .header{
     max-width: 100%;
     display: flex;
     margin: 0px 40px 20px 40px;
     justify-content: space-between;
     align-items: center;
+}
+.header_logo.active{
+    display: none;
 }
 .header_logo{
     display: flex;
@@ -124,12 +130,12 @@ body.loaded {
     width: 24px;
     height: 24px;
 }
- .popover ul li{
+.popover ul li{
     font-size: 20px;
     font-weight: 500;
     line-height: 100%;
     color: #ffffff;;
- }
+}
 .network a{
     display: flex;
     align-items: center;
@@ -137,6 +143,37 @@ body.loaded {
 }
 .network a:hover, .copy-block:hover{
     color: #e8e8e8;
+}
+.burger-menu{
+    display: none;
+}
+.burger-menu.active{
+    display: block;
+}
+.burger-menu ul{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    gap: 15px;
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+    list-style: none;
+}
+.burger-menu ul li a{
+    text-decoration: none;
+    color: #000083;
+}
+.burger-menu .button_personal_account{
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    background: none;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    color: #000083;
 }
 .button_header_menu, .button_personal_account {
     font-family: 'Manrope';
@@ -152,17 +189,39 @@ body.loaded {
     cursor: pointer;
     transition: all 0.2s ease;
 }
-
 .button_header_menu:hover, .button_personal_account:hover {
     background: linear-gradient(45deg, #FF00DD, #E700C8);
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(231, 0, 200, 0.3);
 }
-
+.burger-menu .button_personal_account:hover {
+    background: none;
+    transform: none;
+    box-shadow: none;
+    color: #000083;
+}
 .button_header_menu:active, .button_personal_account:active {
     transform: translateY(1px);
     box-shadow: 0 5px 10px rgba(231, 0, 200, 0.2);
     background: linear-gradient(45deg, #CC00B4, #E600C8);
+}
+.burger-button{
+    display: none;
+    flex-direction: column;
+    gap: 3px;
+    padding: 8px;
+    background-color: #000083;
+    border-radius: 8px;
+    border: none;
+}
+.burger-line{
+    background-color: #FFFFFF;
+    border-radius: 2px;
+    width: 13px;
+    height: 2px;
+}
+.burger-button:active{
+    background-color: #000083c1;
 }
 .main_description{
     max-width: 669px;
@@ -414,7 +473,6 @@ body.loaded {
     cursor: pointer;
     transition: all 0.2s ease;
 }
-
 .lesson_button:hover {
     background: linear-gradient(45deg, #FF00DD, #E700C8);
     transform: translateY(-2px);
@@ -428,12 +486,12 @@ body.loaded {
 }
 .available_subjects{
     display: flex;
+    flex-wrap: wrap;
+    width: fit-content;
     gap: 26px;
     margin-left: 155px;
 }
 .title_subjects{
-    width: 1058px;
-    height: 175px;
     margin: 0px 233px 40px 155px;
     display: flex;
     flex-direction: column;
@@ -481,8 +539,8 @@ body.loaded {
 .button_schl_sb:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(219, 231, 0, 0.274);
+    cursor: pointer;
 }
-
 .button_schl_sb:active {
     transform: translateY(1px);
     box-shadow: 0 5px 10px rgba(219, 231, 0, 0.479);
@@ -520,7 +578,6 @@ body.loaded {
     justify-content: space-between;
     align-items: flex-start;
 }
-
 .subject-card img {
     width: 63px;
     height: 56px;
@@ -528,7 +585,6 @@ body.loaded {
     display: block;
     align-self: flex-end;
 }
-
 .subject-card span {
     color: #FFFFFF;
     font-size: 20px;
@@ -539,7 +595,6 @@ body.loaded {
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(219, 231, 0, 0.274);
 }
-
 .subject-card:active {
     transform: translateY(1px);
     box-shadow: 0 5px 10px rgba(219, 231, 0, 0.479);
@@ -574,6 +629,7 @@ body.loaded {
     display: flex;
     justify-content: center;
     margin-top: 15px;
+    flex-wrap: wrap;
 }
 .plus-card {
     position: relative;
@@ -591,7 +647,6 @@ body.loaded {
     margin-bottom: -16px;
     margin-left: 5px;
 }
-
 .card-description {
     width: 257px;
     height: 130px;
@@ -603,15 +658,17 @@ body.loaded {
     gap: 12px;
     text-align: center;
 }
-
-.card-title {
+.card-title-mobile, .card-about-mobile{
+    display: none;
+}
+.card-title, .card-title-mobile {
     color: #282828;
     font-size: 25px;
     font-weight: 800;
     line-height: 110%;
     letter-spacing: -0.02em;
 }
-.card-about {
+.card-about, .card-about-mobile {
     font-size: 15px;
     font-weight: 500;
     line-height: 110%;
@@ -633,7 +690,6 @@ body.loaded {
     margin: 0 auto;
     padding-top: 28px;
 }
-
 .background_prices span {
     color: #000083;
     font-size: 40px;
@@ -652,12 +708,10 @@ body.loaded {
     position: relative;
     height: 204px;
 }
-
 .ticket-image {
     position: absolute;
     z-index: 0;
 }
-
 .ticket-description {
     position: absolute;
     margin-top: 30px;
@@ -841,7 +895,9 @@ body.loaded {
     left: 980px;
     z-index: 2;
 }
-.lesson_description_1 span, .lesson_description_2 span, .lesson_description_3 span, .lesson_description_4 span{
+.lesson_description_1 span, .lesson_description_2 span, .lesson_description_3 span, .lesson_description_4 span,
+.lesson_description_1-mobile span, .lesson_description_2-mobile span, .lesson_description_3-mobile span, .lesson_description_4-mobile span
+{
     font-size: 18px;
     font-weight: 600;
     line-height: 120%;
@@ -854,7 +910,7 @@ body.loaded {
     letter-spacing: 0.05em;
 }
 .button_classes_in_Orbita{
-    font-family: 'Manrope';
+    display: inline-block;
     font-size: 30px;
     font-weight: 700;
     line-height: 110%;
@@ -893,6 +949,114 @@ body.loaded {
     top: -80px;
     left: 900px;
     z-index: 0;
+}
+.classes_in_Orbita-mobile{
+    display: none;
+}
+.steps{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 30px 16px 0px 16px;
+}
+.steps::before{
+    content: '';
+    position: absolute;
+    border-left: 3px dashed #C9B8FF;
+    left: 17px;
+    top: 18px;
+    bottom: 130px;
+    z-index: 0;
+}
+.step-1, .step-2, .step-3, .step-4{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    width: fit-content;
+}
+.step-1{
+    rotate: -1deg;
+}
+.step-2, .step-4{
+    margin-top: 28px;
+    rotate: 1deg;
+}
+.step-3{
+    rotate: -1deg;
+}
+.cirlce-step{
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    color: #FFFFFF;
+    background-color: #FF00DD;
+    box-shadow: 0 6px 14px #D600B840;
+    font-size: 15px;
+    font-weight: 700;
+}
+.lesson_description_1-mobile, .lesson_description_2-mobile, .lesson_description_3-mobile, .lesson_description_4-mobile{
+    background-color: #FFFFFF;
+    color: #23233B;
+    border-radius: 18px;
+    border-left: 4px solid #E6FF84;
+    padding: 17px 24px;
+    box-shadow: 0 6px #00008310;
+}
+.lesson_description_2-mobile{
+    border-left: 4px solid #D384FF;
+}
+.lesson_description_3-mobile{
+    border-left: 4px solid #86FF5D;
+}
+.lesson_description_4-mobile{
+    border-left: 4px solid #FF9EFC;
+}
+.lesson_description_1-mobile span, .lesson_description_2-mobile span, .lesson_description_3-mobile span, .lesson_description_4-mobile span{
+    font-size: 15px;
+    letter-spacing: 0;
+}
+.lesson-example{
+    width: 248px;
+    height: 248px;
+    border-radius: 50%;
+    border: 3px dashed #FF00DD;
+    padding: 12px;
+    margin: 26px 0px 26px 71px;
+    box-sizing: border-box;
+    overflow: visible;
+}
+.example_online_lesson-mobile-mobile{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #FFFFFF;
+    box-shadow: 0 16px 32px #406CFF40;
+}
+.example_online_lesson-mobile-mobile img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.2);
+}
+.live_lesson{
+    position: absolute;
+    background-color: #406CFF;
+    color: #FFFFFF;
+    font-size: 12px;
+    line-height: 120%;
+    font-weight: 600;
+    padding: 8px 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px #406CFF70;
+    left: 38%;
+    margin-top: -30px;
+    transform: scale(1.3);
 }
 .faq{
     background-color: #F1F4FF;
@@ -1123,11 +1287,12 @@ body.loaded {
     line-height: 120%;
     letter-spacing: -0.06em;
 }
-.students_and_parents{
+.students_and_parents, .about_us{
     padding-top: 40px;
+    padding-bottom: 50px;
     display: flex;
     flex-direction: column;
-    margin-left: 154px;
+    margin-left: 108px;
     gap: 20px;
 }
 .students_and_parents ul, .about_us ul{
@@ -1139,13 +1304,6 @@ body.loaded {
 }
 .students_and_parents ul li a:hover, .about_us ul li a:hover{
     text-decoration: underline;
-}
-.about_us{
-    padding-top: 40px;
-    display: flex;
-    flex-direction: column;
-    margin-left: 154px;
-    gap: 20px;
 }
 .container{
    max-width: 1600px;
@@ -1185,7 +1343,7 @@ body.loaded {
     display: block;
 }
 .promotional_video {
-    max-height: 95vh;
+    max-height: 90vh;
     object-fit: contain;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -1193,23 +1351,26 @@ body.loaded {
 
 @media screen and (max-width: 480px) {
     .header{
-        margin: 10px 7px 41px 7px;
+        margin: 12px 16px 36px 16px;
     }
     .header_logo a{
         margin-left: 0;
     }
-    .header_logo a span{
-        font-size: 15px;
-    }
     .header_logo img{
-        width: 23px;
-        height: 23px;
+        width: 50px;
+        height: 50px;
     }
     .header_menu{
         gap: 13px;
     }
+    .burger-button{
+        display: flex;
+    }
+    .header_menu, .ufo, .ticket-image, .rocket, .saturn, .dekstop-classes_in_Orbita{
+        display: none;
+    }
     .header_logo a span{
-        font-size: 12px;
+        font-size: 20px;
     }
     .button_header_menu{
         font-size: 10px;
@@ -1221,12 +1382,6 @@ body.loaded {
     }
     .mobile-hide{
         display: none;
-    }
-    .header_menu ul{
-        gap: 10px;
-    }
-    .header_menu ul li a{
-        font-size: 12px;
     }
     .main_description{
         align-items: center;
@@ -1260,7 +1415,6 @@ body.loaded {
         position: relative;
         display: block;
     }
-
     .button_description::after {
         content: "▶";
         position: absolute;
@@ -1269,14 +1423,12 @@ body.loaded {
         color: white;
         font-size: 20px;
     }
-
     .button_description:hover {
         transform: scale(1.1);
         box-shadow:
             0 0 0 8px rgba(255, 0, 200, 0.15),
             0 10px 20px rgba(214, 0, 184, 0.5);
     }
-
     .main_video{
         margin-left: 24px;
     }
@@ -1328,16 +1480,13 @@ body.loaded {
         padding: 12px;
         gap: 9px;
     }
-
     .online_students img {
         width: 100px;
         height: auto;
     }
-
     .number {
         font-size: 20px;
     }
-
     .students_info .description {
         font-size: 12px;
         text-align: center;
@@ -1349,24 +1498,351 @@ body.loaded {
         height: 96px;
         padding: 11px 8px;
     }
-
     .online_lesson img {
         width: 35px;
         height: 35px;
     }
-
     .title {
         font-size: 12px;
     }
-
     .date {
         font-size: 10px;
     }
-
     .lesson_button {
         max-width: 87px;
         font-size: 11px;
         padding: 4px;
         font-size: 10px;
+    }
+    .main_school_subjects{
+        padding: 0;
+    }
+    .title_subjects{
+        margin: 20px 16px 0px 16px;
+        gap: 5px;
+    }
+    .title_sb{
+        font-size: 20px;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+    .description_sb{
+        font-size: 15px;
+    }
+    .buttons_school_subjects{
+        gap: 10px;
+        margin-left: 16px;
+        margin-top: 15px;
+    }
+    .button_schl_sb, .button_exam_sb{
+        padding: 5px 10px;
+        border-width: 1px;
+        color: #FFFFFF;
+        font-size: 10px;
+        white-space: nowrap;
+    }
+    .button_exam_sb{
+        background: none;
+        color: #000000;
+    }
+    .available_subjects{
+        gap: 6px;
+        margin-left: 16px;
+        margin-top: 15px;
+    }
+    .subject-card {
+        margin-top: 0;
+        background-color: #406CFF;
+        border-radius: 10px;
+        padding: 7px 10px;
+        width: 104px;
+        height: 60px;
+    }
+    .subject-card img {
+        width: 28px;
+        height: 28px;
+    }
+    .subject-card span {
+        font-size: 10px;
+    }
+    .plus-card{
+        height: auto;
+        margin-top: 10px;
+    }
+    .card-description {
+        width: 257px;
+        height: 104px;
+        margin-top: 0;
+    }
+    .title_choose{
+        margin: 60px 0px 14px 0px;
+        width: auto;
+        height: auto;
+    }
+    .title_choose span{
+        font-size: 25px;
+        white-space: nowrap;
+    }
+    .title_choose img{
+        display: none;
+    }
+    .card-icon{
+        width: 58px;
+        height: 58px;
+        margin-bottom: -10px;
+    }
+    .frame-image{
+        height: 177px;
+    }
+    .plus-card#card-2 .card-title, .plus-card#card-2 .card-about, .plus-card#card-3 .card-about, .plus-card#card-4 .card-about{
+        display: none;
+    }
+    .plus-card#card-2 .card-title-mobile, .plus-card#card-2 .card-about-mobile, .plus-card#card-3 .card-about-mobile, .plus-card#card-4 .card-about-mobile, .plus-card#card-4 .card-about-mobile{
+        display: block;
+    }
+    .card-description {
+        width: 257px;
+        height: 104px;
+        margin-top: 50px;
+    }
+    .card-title,.plus-card#card-2 .card-title-mobile {
+        font-size: 20px;
+    }
+    .card-about,.plus-card#card-2 .card-about-mobile, .plus-card#card-3 .card-about-mobile, .plus-card#card-4 .card-about-mobile {
+        font-size: 12px;
+    }
+    .prices{
+        padding: 0;
+        margin-top: 60px;
+    }
+    .background_prices{
+        position: relative;
+        padding: 16px 0;
+        border-radius: 24px;
+        width: auto;
+        height: auto;
+        margin: 0px 16px;
+    }
+    .background_prices span{
+        position: static;
+        font-size: 20px;
+        margin: 0px 0px 16px 16px;
+    }
+    .tickets{
+        margin: 16px 12px 0 12px;
+        padding-top: 0;
+        gap: 16px;
+    }
+    .ticket-card{
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        border-radius: 16px;
+        background-color: #FFFFFF;
+        border: 1px solid #000083;
+        padding: 16px;
+    }
+    .ticket-card.external_studies{
+        background-color: #D384FF;
+        color: #FFFFFF;
+    }
+    .ticket-description{
+        position: static;
+        margin-top: 0;
+    }
+    .ticket-description span{
+        font-size: 18px;
+        padding-left: 0;
+        margin: 0;
+    }
+    .ticket-description ul{
+        padding-left: 0px;
+    }
+    .ticket-description li{
+        font-size: 14px;
+        padding-left: 22px;
+        margin-bottom: 6px;
+    }
+    .ticket-description li::before{
+        width: 14px;
+        height: 14px;
+    }
+    .mobile-line{
+        margin-top: 16px;
+        width: 287px;
+        height: 1px;
+        border: none;
+        background-image: repeating-linear-gradient(
+            to right,
+            #000083 0,
+            #000083 8px,
+            transparent 5px,
+            transparent 15px
+        );
+    }
+    .ticket-price{
+        position: static;
+        margin: 16px 0 0 0;
+        align-items: center;
+        gap: 0px;
+    }
+    .ticket-price span{
+        font-size: 28px;
+    }
+    .ticket-price .month_span{
+        font-size: 18px;
+    }
+    .ticket-button{
+        width: 100%;
+        padding: 10px 16px;
+        font-size: 15px;
+        border-radius: 14px;
+    }
+    .classes_in_Orbita{
+        padding-top: 0;
+        margin-top: 60px;
+    }
+    .title_classes_in_Orbita{
+        font-size: 25px;
+        margin-left: 16px;
+    }
+    .classes_in_Orbita-mobile{
+        display: block;
+    }
+    .button_classes_in_Orbita{
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 60px;
+        text-transform: uppercase;
+        line-height: 140%;
+        color: #FFFFFF;
+        border: 0;
+        background: linear-gradient(45deg, #E700C8, #FF00DD);
+        border-radius: 24px;
+    }
+    .faq{
+        padding: 0;
+        margin: 60px 16px;
+    }
+    .title_faq{
+        font-size: 25px;
+        margin: 0 auto;
+    }
+    .questions{
+        margin-top: 24px;
+        gap: 10px;
+        margin-left: 0;
+    }
+    .question{
+        width: fit-content;
+        border-radius: 15px;
+        padding: 14px;
+        box-shadow: 0px 0px 8px #00000025;
+        height: auto;
+    }
+    .questions-support{
+        display: flex;
+        flex-direction: column;
+        gap: 74px;
+    }
+    .questions span {
+        font-size: 15px;
+    }
+    .questions button {
+        width: 28px;
+        height: 28px;
+        min-width: auto;
+        min-height: auto;
+    }
+    .question_title img{
+        width: 28px;
+        height: 28px;
+    }
+    .questions .answer{
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 80%;
+        letter-spacing: -0.02em;
+    }
+    .questions .answer br{
+        display: none;
+    }
+    .support{
+        padding: 20px;
+        width: 100%;
+        height: auto;
+        gap: 16px;
+        text-align: center;
+    }
+    .astronaut_help{
+        width: 69px;
+        height: 60px;
+        top: -50px;
+    }
+    .title_descriptoin{
+        gap: 5px;
+    }
+    .title_support{
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+    .descriptoin_support{
+        font-size: 12px;
+    }
+    .support_buttons{
+        flex-direction: column;
+        gap: 8px;
+    }
+    .support_button{
+        font-size: 15px;
+        text-transform: uppercase;
+        padding: 14px 61px;
+        border-radius: 12px;
+    }
+    .footer{
+        padding: 10px 16px 24px 16px;
+        flex-direction: column;
+        height: auto;
+        gap: 24px;
+    }
+    .footer img{
+        width: 80px;
+        height: 80px;
+    }
+    .logo_slogan{
+        margin: 0;
+    }
+    .logo_slogan span{
+        font-size: 16px;
+        font-weight: 400;
+    }
+    .title_std_prnts br{
+        display: none;
+    }
+    .contact_phone_number, .students_and_parents, .about_us{
+        padding: 0;
+        margin: 0;
+        gap: 15px;
+    }
+    .contact_phone_number .phone_number{
+        font-size: 24px;
+        color: #000083;
+        font-weight: 700;
+        letter-spacing: 0;
+    }
+    .students_and_parents .title_std_prnts, .about_us .title_about_us{
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+    }
+    .students_and_parents ul, .about_us ul{
+        gap: 8px;
+    }
+    .promotional_video{
+        max-height: 70vh;
+    }
+    .popUp .Contacts {
+        max-width: 355px;
+        max-height: 540px;
     }
 }

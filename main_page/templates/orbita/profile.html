@@ -66,6 +66,7 @@
                     <span id="student-plan">{{ user.grade }} · тариф «{{ user.tariff.name|default:"не выбран" }}»</span>
                 </div>
             </div>
+            <a href="{% url 'home_page' %}" class="logout"><img src="{%static 'images/logout-icon.png'%}" alt="Выйти"></a>
         </div>
         <main class="main-content">
             <section class="profile">
@@ -341,9 +342,9 @@
                 </div>
             </section>
 
-            <section class="home">
+            <section class="home active">
                 <div class="title-description">
-                    <span class="title-text">Привет, {{ user.surname }} 👋</span>
+                    <span class="title-text">Привет, {{ user.name }} 👋</span>
                     <span class="description-text">
                         {{ today_date_formatted }} — у тебя сегодня
                         <strong>{{ lessons_today_count }}</strong>
@@ -515,7 +516,7 @@
             </section>
         </main>
     </div>
-    <script defer src="{% static 'js/main.js' %}"></script>
     <script defer src="{% static 'js/profile.js' %}"></script>
+    <script defer src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

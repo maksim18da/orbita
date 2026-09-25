@@ -24,4 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = ''
         })
     }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && modal.style.display === 'flex') {
+            modal.style.display = 'none'
+            document.body.style.overflow = ''
+        }
+    })
 })

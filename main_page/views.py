@@ -126,7 +126,19 @@ def logout_view(request):
     return redirect('registration')
 
 def about_page(request):
-    return render(request, 'orbita/about.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Форма успешно отправлена!')
+            return redirect('about_page')
+        else:
+            messages.error(request, 'Ошибка в заполнении формы')
+    else:
+        form = ContactForm()
+    return render(request, 'orbita/about.html', {'form': form})
+def oferta_page(request):
+    return render(request, 'orbita/oferta.html')
 
 def contact_view(request):
     if request.method == 'POST':
@@ -208,13 +220,14 @@ def cabinet_view(request):
         if lessons_today.exists():
             lessons_data = []
             for lesson in lessons_today:
+                local_start = timezone.localtime(lesson.start_time)
                 lessons_data.append({
                     'subject': lesson.subject.title,
                     'teacher': lesson.teacher_name,
                     'topic': lesson.topic,
                     'link': lesson.link,
                     'start_time': lesson.start_time,
-                    'time': lesson.start_time.strftime('%H:%M'),
+                    'time': local_start.strftime('%H:%M'),
                     'subject_initial': lesson.subject.title[0],
                 })
 
@@ -257,7 +270,7 @@ def cabinet_view(request):
             'teacher_name': room.teacher_name,
             'initials': ''.join(w[0] for w in room.teacher_name.split()[:2]).upper(),
             'last_text': (last_msg.text if last_msg and last_msg.text else ('📎 файл' if last_msg else 'Нет сообщений')),
-            'last_time': last_msg.created_at.strftime('%H:%M') if last_msg else '',
+            'last_time': timezone.localtime(last_msg.created_at).strftime('%H:%M') if last_msg else '',
             'unread': room.messages.filter(sender_type='teacher', is_read=False).count(),
         })
 
@@ -269,12 +282,18 @@ def cabinet_view(request):
 
     next_lesson_data = None
     if next_lesson:
+        local_start = timezone.localtime(next_lesson.start_time)
         lesson_date = next_lesson.start_time.date()
         is_today = lesson_date == today
 
-        start_time_str = next_lesson.start_time.strftime('%H:%M')
-        end_time = next_lesson.start_time + timedelta(hours=1)
-        end_time_str = end_time.strftime('%H:%M')
+        start_time_str = local_start.strftime('%H:%M')
+        local_end = local_start + timedelta(hours=1)
+        end_time_str = local_end.strftime('%H:%M')
+        if is_today:
+            date_formatted = f'Сегодня, {start_time_str}–{end_time_str}'
+        else:
+            month_name = months[local_start.month - 1]
+            date_formatted = f'{local_start.day} {month_name}, {start_time_str}'
 
         next_lesson_data = {
             'subject': next_lesson.subject.title,
@@ -283,8 +302,7 @@ def cabinet_view(request):
             'teacher_initials': ''.join(w[0] for w in next_lesson.teacher_name.split()[:2]).upper(),
             'link': next_lesson.link,
             'start_time': next_lesson.start_time,
-            'date_formatted': f'Сегодня, {start_time_str}–{end_time_str}' if is_today else next_lesson.start_time.strftime(
-                '%d %B, %H:%M'),
+            'date_formatted': date_formatted,
             'is_today': is_today,
         }
 
@@ -417,7 +435,7 @@ def chat_messages_view(request, room_id):
         'text': m.text,
         'file_url': m.file.url if m.file else None,
         'file_name': m.file.name.split('/')[-1] if m.file else None,
-        'time': m.created_at.strftime('%H:%M'),
+        'time': timezone.localtime(m.created_at).strftime('%H:%M'),
     } for m in room.messages.all()]
 
     return JsonResponse({'success': True, 'messages': messages_data})

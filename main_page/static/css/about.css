@@ -1,71 +1,3 @@
-::-webkit-scrollbar{
-    background-color: #fbddfa;
-    width: 10px;
-}
-::-webkit-scrollbar-thumb {
-    background: #ff00dd;
-    border-radius: 5px;
-    background-clip: padding-box;
-    border: 2px solid transparent;
-}
-.popover_block{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-}
-.popover{
-    display: none;
-    width: 215px;
-    position: absolute;
-    margin-top: 40px;
-    background-color:#ff00ddd7 ;
-    border-radius: 20px;
-    z-index: 3;
-    cursor: pointer;
-}
-.popover.active{
-    display: block;
-    width: 215px;
-    position: absolute;
-    margin-top: 40px;
-    padding: 15px 20px;
-    background-color:#ff00ddd7 ;
-    border-radius: 20px;
-    z-index: 3;
-}
-.popover ul{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-}
-.popover ul li a{
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 110%;
-    color: #ffffff;
-}
-.popover img{
-    width: 24px;
-    height: 24px;
-}
- .popover ul li{
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 100%;
-    color: #ffffff;;
- }
-.network a{
-    display: flex;
-    align-items: center;
-    gap: 5px
-}
-.network a:hover, .copy-block:hover{
-    color: #e8e8e8;
-}
 .about-page1{
     display: flex;
     align-items: center;
@@ -136,6 +68,9 @@
     line-height: 120%;
     color: #000083;
 }
+.headline br{
+    display: none;
+}
 .study-description{
     font-size: 20px;
     font-weight: 500;
@@ -147,7 +82,7 @@
     gap: 30px;
     margin-top: 20px;
 }
-.study-btn {
+.study-btn{
     font-family: 'Manrope';
     font-size: 20px;
     font-weight: 600;
@@ -158,6 +93,7 @@
     border-radius: 20px;
     padding: 20px 20px;
     text-decoration: none;
+    text-align: center;
     cursor: pointer;
     transition: all 0.2s ease;
 }
@@ -203,10 +139,16 @@
 .advantage-details{
     font-size: 20px;
 }
-.vertical-line{
+.vertical-line, .horizontal-line{
     border: 1px solid #f0e4e4d8;
     height: 92px;
+    width: 0;
     border-radius: 20px;
+}
+.horizontal-line{
+    display: none;
+    width: 100%;
+    height: 0;
 }
 .hybrid-learning{
     position: relative;
@@ -302,11 +244,14 @@
     padding: 6px 10px;
     width: fit-content;
 }
-.circle{
+.about-online-training .circle, .about-personally .circle{
     width: 10px;
     height: 10px;
     border-radius: 50%;
     background-color: #76E54E;
+}
+.about-personally .circle{
+    background-color: #FFFFFF;
 }
 .about-online-training span,.about-personally span, .li{
     font-size: 20px;
@@ -315,6 +260,9 @@
     letter-spacing: -0.03em;
     color: #F8F2F2;
     width: fit-content;
+}
+.about-personally br{
+    display: none;
 }
 .online-training:hover, .personally:hover{
     transform: translateY(-3px);
@@ -332,7 +280,7 @@
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background-color: #F8F2F2;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -422,6 +370,7 @@
     line-height: 120%;
     letter-spacing: -0.02em;
     font-weight: 600;
+    color: #5E5959;
     width: fit-content;
 }
 .specialized-subjects{
@@ -486,6 +435,9 @@
 .back:active,.forward:active{
     transform: translateY(-1px);
 }
+.mobile-arrow{
+    display: none;
+}
 .forward img{
     transform: scaleX(-1);
 }
@@ -506,7 +458,7 @@
     padding: 80px 50px;
     display: flex;
     justify-content: center;
-    max-width: 1260px;
+    max-width: 1250px;
     margin: 0 auto;
 }
 .reviews-track{
@@ -590,6 +542,12 @@
 .benefits-buttons{
     margin: 20px 0px 0px 40px;
 }
+.mobile_br{
+    display: none;
+}
+.benefits-buttons .buttons{
+    padding-top: 10px;
+}
 .introductory-lesson .description{
     margin-top: 217px;
 }
@@ -653,6 +611,9 @@
 .social-media{
     margin-top: 27px;
     margin-left: 40px;
+    display: flex;
+    gap: 15px;
+    width: fit-content;
 }
 .about-title-1, .about-title-2, .metro, .phonen_number, .call-title, .admin-name{
     font-weight: 800;
@@ -689,13 +650,9 @@
 .admin-name{
     font-weight: 600;
     font-size: 15px;
+    color: #F0E1E1;
 }
-.social-media{
-    display: flex;
-    gap: 15px;
-    width: fit-content;
-}
-.phone, .telegram, .vk{
+.whatsapp, .telegram, .vk{
     width: 40px;
     height: 40px;
     border-radius: 15px;
@@ -704,11 +661,397 @@
     justify-content: center;
     align-items: center;
 }
-.phone:hover, .telegram:hover, .vk:hover{
+.whatsapp:hover, .telegram:hover, .vk:hover{
     cursor: pointer;
     scale: calc(1.05);
 }
 iframe{
     border: none;
     border-radius: 20px;
+}
+@media screen and (max-width: 480px) {
+    .about-page1{
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: static;
+        overflow: hidden;
+        margin: 0px 16px;
+    }
+    .study{
+        display: contents;
+        margin: 0;
+    }
+    .headline{
+        font-size: 32px;
+        font-weight: 900;
+        line-height: 120%;
+        order: 1;
+    }
+    .study-description{
+        font-size: 15px;
+        order: 2;
+        margin-top: 16px;
+    }
+    .visual{
+        width: 100%;
+        height: 371px;
+        order: 3;
+    }
+    .schoolgirl{
+        position: relative;
+        width: 270px;
+        height: 100%;
+        top: 7%;
+        left: 5%;
+    }
+    .blur{
+        position: absolute;
+        width: 343px;
+        height: 360px;
+        top: 10%;
+        left: 0%;
+    }
+    .earth{
+        display: none;
+    }
+    .headline{
+        font-size: 32px;
+        font-weight: 900;
+        line-height: 120%;
+    }
+    .headline br{
+        display: block;
+    }
+    .study-description{
+        font-size: 15px;
+    }
+    .study-description br{
+        display: none;
+    }
+    .buttons{
+        padding-top: 50px;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 0;
+        order: 4;
+        width: 100%;
+    }
+    .study-btn, .study-btn.open-form{
+        font-size: 16px;
+        border-radius: 16px;
+        padding: 16px 20px;
+    }
+    .advantages_block{
+        margin-top: 32px;
+        margin-bottom: 30px;
+        height: auto;
+        gap: 23px;
+        padding: 24px 16px;
+    }
+    .advantage-title{
+        font-size: 32px;
+    }
+    .advantage-details{
+        font-size: 13px;
+    }
+    .advantage{
+        gap: 4px;
+    }
+    .vertical-line{
+        height: 40px;
+    }
+    .vertical-line#line-2{
+        display: none;
+    }
+    .horizontal-line{
+        display: block;
+    }
+    .hybrid-learning{
+        display: flex;
+        flex-direction: column;
+    }
+    .hybrid-learning, .benefit-cards, .teachers-orbita{
+        margin: 30px 16px;
+    }
+    .description{
+        margin: 0;
+        gap: 8px;
+    }
+    .explanatory-title, .about-text{
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .main-title{
+        font-size: 25px;
+    }
+    .about-text br{
+        display: none;
+    }
+    .rocket_img{
+        display: none;
+    }
+    .benefit-cards{
+        margin: 24px 0 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    .online-training, .personally {
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+    }
+    .advantages_block{
+        height: auto;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        grid-template-rows: auto auto auto;
+        row-gap: 24px;
+        column-gap: 16px;
+    }
+    .advantage:nth-child(1){ grid-column: 1; grid-row: 1; }
+    .advantage:nth-child(3){ grid-column: 3; grid-row: 1; }
+    .advantage:nth-child(6){ grid-column: 1; grid-row: 3; }
+    .advantage:nth-child(8){ grid-column: 3; grid-row: 3; }
+    #line-1{
+        grid-column: 2; grid-row: 1;
+    }
+    #line-3{
+        grid-column: 2; grid-row: 3;
+    }
+    .horizontal-line{
+        display: block;
+        grid-column: 1 / 4;
+        grid-row: 2;
+    }
+    .mask-group-1 {
+        width: 100%;
+        height: 200px;
+    }
+    .online{
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+    .circle{
+        width: 8px;
+        height: 8px;
+    }
+    .about-online-training, .about-personally{
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .about-online-training span,.about-personally span{
+        font-size: 18px;
+    }
+    .about-personally br{
+        display: block;
+    }
+    .li{
+        align-items: center;
+        font-size: 14px;
+    }
+    .cirle_ol{
+        width: 22px;
+        height: 22px;
+    }
+    .teachers-orbita{
+        min-height: auto;
+    }
+    .teacher-card, .new-teacher{
+        box-shadow: none;
+    }
+    .desktop-arrow{
+        display: none;
+    }
+    .mobile-arrow{
+        display: block;
+    }
+    .back,.forward{
+        width: 33px;
+        height: 33px;
+    }
+    .back{
+        top: 58%;
+        left: 0;
+    }
+    .forward{
+        top: 58%;
+        right: 0;
+    }
+    .students-reviews .back{
+        top: 58%;
+        left: 16px;
+    }
+    .students-reviews .forward{
+        top: 58%;
+        right: 16px;
+    }
+    .cards{
+        margin-top: 30px;
+        margin-left: 45px;
+        gap: 20px;
+    }
+    .teacher-card, .new-teacher{
+        width: 256px;
+        height: auto;
+        padding: 16px;
+    }
+    .mask-group-2{
+        width: 224px;
+        height: 220px;
+        margin: 0;
+    }
+    .mask-group-2 img{
+        top: 40px;
+        left: -5px;
+        scale: calc(1.3);
+    }
+    .about-teacher{
+        margin: 10px 0 0 0;
+    }
+    .experience{
+        font-size: 12px;
+    }
+    .name-position{
+        gap: 0;
+    }
+    .name{
+        font-size: 18px;
+    }
+    .position{
+        color: #5E5959;
+        font-size: 13px;
+    }
+    .box{
+        font-size: 12px;
+    }
+    .specialized-subjects{
+        gap: 6px;
+    }
+    .new-teacher{
+        text-align: center;
+    }
+    .students-reviews, .introductory-lesson, .location{
+        padding: 30px 16px;
+    }
+    .students-reviews{
+        position: relative;
+    }
+    .students-reviews .description{
+        margin: 0;
+        gap: 8px;
+    }
+    .reviews{
+        justify-content: flex-start;
+        padding: 0 0 0 44px;
+        margin-top: 24px;
+    }
+    .reviews:hover{
+        box-shadow: none;
+    }
+    .reviews-box{
+        gap: 12px;
+        width: 256px;
+        padding: 20px;
+        height: 465px;
+        border-radius: 20px;
+    }
+    .reviews-box.active{
+        border: none;
+        box-shadow: none;
+        transform: none;
+        margin: 0;
+    }
+    .introductory-lesson{
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    .introductory-lesson .about-text .desktop_br{
+        display: none;
+    }
+    .mobile_br{
+        display: block !important;
+    }
+    .introductory-lesson .description{
+        margin-top: 0;
+    }
+    .benefits-buttons{
+        margin: 24px 0 0 0;
+    }
+    .text, .benefits-buttons{
+        display: contents;
+    }
+    .ul{
+        gap: 8px;
+    }
+    .background{
+        width: 100%;
+        height: 319px;
+        top: 42%;
+        left: 10%;
+    }
+    .mask-group-3{
+        width: 100%;
+        height: 294px;
+    }
+    .quail-img{
+        width: 275px;
+        height: 297px;
+    }
+    .introductory-lesson-visual{
+        margin-top: 0;
+    }
+    .location{
+        display: flex;
+        gap: 10px;
+        margin: 0;
+    }
+    .yandex_map{
+        display: none;
+    }
+    .about{
+        width: auto;
+        height: auto;
+        padding: 24px;
+        margin: 0;
+    }
+    .about-location-description{
+        margin: 0;
+        gap: 12px;
+    }
+    .about-title-1{
+        font-size: 24px;
+    }
+    .about-title-2, .phonen_number, .call span{
+        font-size: 16px;
+    }
+    .metro{
+        width: 100%;
+        padding: 8px 12px;
+        font-size: 14px;
+        text-align: center;
+    }
+    .call{
+        margin: 20px 0 0 0;
+    }
+    .contacts img{
+        width: 40px;
+        height: 40px;
+    }
+    .phone-name{
+        gap: 2px;
+    }
+    .admin-name{
+        font-size: 12px !important;
+        font-weight: 400;
+    }
+    .social-media{
+        margin: 15px 0 0 0;
+        gap: 12px;
+    }
 }

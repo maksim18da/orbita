@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', ()=>{
     const popUpHolder = document.querySelector(".popUp");
-    const startButtons = document.querySelectorAll('.button_header_menu, .button_classes_in_Orbita');
+    const startButtons = document.querySelectorAll('.button_header_menu, .button_classes_in_Orbita, .open-form');
     const videoBtn = document.querySelector('.button_description');
     const videoContainer = document.querySelector('.video-container');
     const video = document.querySelector('.promotional_video');
@@ -12,7 +12,21 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const phoneQR = document.getElementById('phoneQR')
     let popover_block = document.querySelector('.popover_block')
     let popover = document.querySelector('.popover')
-    let timeoutId
+    let timeoutId, IphoneMedia
+    const mediaQuery = window.matchMedia('(max-width:480px)')
+    function handleMediaChange(e){
+        window.IphoneMedia = e.matches
+        if (e.matches){
+            document.getElementById('burgerBtn').addEventListener('click',()=>{
+                let header_logo = document.querySelector('.header_logo')
+                let burger_menu = document.querySelector('.burger-menu')
+                header_logo.classList.toggle('active')
+                burger_menu.classList.toggle('active')
+            })
+        }
+    }
+    handleMediaChange(mediaQuery)
+    mediaQuery.addEventListener('change', handleMediaChange)
     window.addEventListener('load', ()=>{
         document.body.classList.add('loaded')
     })
@@ -101,10 +115,16 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }
     });
     write_button.addEventListener('click', ()=>{
-        qrcode_overlay.classList.add('active')
-        taplinkQR.classList.add('active')
-        document.querySelector('.qrcode1').style.display = 'block'
-        document.body.style.overflow = 'hidden'
+        if (!window.IphoneMedia){
+            write_button.removeAttribute('href')
+            qrcode_overlay.classList.add('active')
+            taplinkQR.classList.add('active')
+            document.querySelector('.qrcode1').style.display = 'block'
+            document.body.style.overflow = 'hidden'
+        }
+        else{
+            return
+        }
     })
     qrcode_overlay.addEventListener('click', ()=>{
         if(taplinkQR.classList.contains('active') || phoneQR.classList.contains('active')){
@@ -116,9 +136,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }
     })
     call_button.addEventListener('click', ()=>{
-        qrcode_overlay.classList.add('active')
-        phoneQR.classList.add('active')
-        document.querySelector('.qrcode2').style.display = 'block'
-        document.body.style.overflow = 'hidden'
+        if (!window.IphoneMedia){
+            call_button.removeAttribute('href')
+            qrcode_overlay.classList.add('active')
+            phoneQR.classList.add('active')
+            document.querySelector('.qrcode2').style.display = 'block'
+            document.body.style.overflow = 'hidden'
+        }
+        else{
+            return
+        }
     })
 })

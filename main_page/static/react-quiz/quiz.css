@@ -1,1 +1,193 @@
-*{box-sizing:border-box}body{background:linear-gradient(135deg,#eef2ff 0%,#f5f3ff 50%,#fdf2f8 100%);justify-content:center;align-items:center;min-height:100vh;margin:0;padding:24px;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;display:flex}.quiz-card{background:#fff;border-radius:20px;width:100%;max-width:480px;padding:32px;box-shadow:0 20px 50px #503fcd26}.quiz-card.hide{display:none}.quiz-top{color:#6b7280;justify-content:space-between;align-items:center;margin-bottom:16px;font-size:14px;font-weight:500;display:flex}.quiz-score{color:#6d28d9;background:#ede9fe;border-radius:999px;padding:4px 12px;font-weight:600}.progress-bar-track{background:#eef0f4;border-radius:999px;width:100%;height:8px;margin-bottom:28px;overflow:hidden}.progress-bar-fill{background:linear-gradient(90deg,#818cf8,#a78bfa);border-radius:999px;width:40%;height:100%;transition:width .3s}.question-title{color:#1f2937;margin:0 0 24px;font-size:22px;font-weight:700;line-height:1.4}.options{flex-direction:column;gap:12px;margin-bottom:28px;display:flex}.option{color:#374151;cursor:pointer;background:#fafafa;border:2px solid #e5e7eb;border-radius:14px;align-items:center;gap:12px;padding:14px 16px;font-size:16px;transition:all .15s;display:flex}.option:hover{background:#f5f3ff;border-color:#c4b5fd}.option.correct{color:#065f46;background:#ecfdf5;border-color:#34d399}.option.correct .option-letter{color:#fff;background:#34d399}.option.wrong{color:#991b1b;background:#fef2f2;border-color:#f87171}.option.wrong .option-letter{color:#fff;background:#f87171}.btn-next{color:#fff;cursor:pointer;background:linear-gradient(90deg,#818cf8,#a78bfa);border:none;border-radius:14px;width:100%;padding:14px;font-size:16px;font-weight:600;transition:opacity .15s}.btn-next:hover{opacity:.9}.result-card{text-align:center;background:#fff;border-radius:20px;width:100%;max-width:480px;margin-top:24px;padding:40px 32px;display:none;box-shadow:0 20px 50px #503fcd26}.result-card.active{display:block}.result-emoji-circle{background:#ede9fe;border-radius:50%;justify-content:center;align-items:center;width:88px;height:88px;margin:0 auto 20px;font-size:40px;display:flex}.result-title{color:#1f2937;margin:0 0 8px;font-size:20px;font-weight:700}.result-score{background:linear-gradient(90deg,#818cf8,#a78bfa);color:#0000;-webkit-background-clip:text;background-clip:text;margin:0 0 24px;font-size:36px;font-weight:800}.btn-restart{color:#374151;cursor:pointer;background:#fff;border:2px solid #e5e7eb;border-radius:14px;width:100%;padding:14px;font-size:16px;font-weight:600}.btn-restart:hover{background:#f9fafb}.wrapper{flex-direction:column;align-items:center;display:flex}
+#react-quiz-root *,
+#react-quiz-root *::before,
+#react-quiz-root *::after {
+    box-sizing: border-box;
+}
+
+#react-quiz-root {
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    width: 100%;
+}
+
+#react-quiz-root .quiz-card {
+    background: #fff;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 32px;
+    box-shadow: 0 20px 50px #503fcd26;
+}
+
+#react-quiz-root .quiz-card.hide {
+    display: none;
+}
+
+#react-quiz-root .quiz-top {
+    color: #6b7280;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+}
+
+#react-quiz-root .quiz-score {
+    color: #6d28d9;
+    background: #ede9fe;
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-weight: 600;
+}
+
+#react-quiz-root .progress-bar-track {
+    background: #eef0f4;
+    border-radius: 999px;
+    width: 100%;
+    height: 8px;
+    margin-bottom: 28px;
+    overflow: hidden;
+}
+
+#react-quiz-root .progress-bar-fill {
+    background: linear-gradient(90deg, #818cf8, #a78bfa);
+    border-radius: 999px;
+    width: 40%;
+    height: 100%;
+    transition: width .3s;
+}
+
+#react-quiz-root .question-title {
+    color: #1f2937;
+    margin: 0 0 24px;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+#react-quiz-root .options {
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 28px;
+    display: flex;
+}
+
+#react-quiz-root .option {
+    color: #374151;
+    cursor: pointer;
+    background: #fafafa;
+    border: 2px solid #e5e7eb;
+    border-radius: 14px;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    font-size: 16px;
+    transition: all .15s;
+    display: flex;
+}
+
+#react-quiz-root .option:hover {
+    background: #f5f3ff;
+    border-color: #c4b5fd;
+}
+
+#react-quiz-root .option.correct {
+    color: #065f46;
+    background: #ecfdf5;
+    border-color: #34d399;
+}
+
+#react-quiz-root .option.correct .option-letter {
+    color: #fff;
+    background: #34d399;
+}
+
+#react-quiz-root .option.wrong {
+    color: #991b1b;
+    background: #fef2f2;
+    border-color: #f87171;
+}
+
+#react-quiz-root .option.wrong .option-letter {
+    color: #fff;
+    background: #f87171;
+}
+
+#react-quiz-root .btn-next {
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(90deg, #818cf8, #a78bfa);
+    border: none;
+    border-radius: 14px;
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: opacity .15s;
+}
+
+#react-quiz-root .btn-next:hover {
+    opacity: .9;
+}
+
+#react-quiz-root .result-card {
+    text-align: center;
+    background: #fff;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 480px;
+    margin: 24px auto 0;
+    padding: 40px 32px;
+    display: none;
+    box-shadow: 0 20px 50px #503fcd26;
+}
+
+#react-quiz-root .result-card.active {
+    display: block;
+}
+
+#react-quiz-root .result-emoji-circle {
+    background: #ede9fe;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 20px;
+    font-size: 40px;
+    display: flex;
+}
+
+#react-quiz-root .result-title {
+    color: #1f2937;
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#react-quiz-root .result-score {
+    background: linear-gradient(90deg, #818cf8, #a78bfa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0 0 24px;
+    font-size: 36px;
+    font-weight: 800;
+}
+
+#react-quiz-root .btn-restart {
+    color: #374151;
+    cursor: pointer;
+    background: #fff;
+    border: 2px solid #e5e7eb;
+    border-radius: 14px;
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#react-quiz-root .btn-restart:hover {
+    background: #f9fafb;
+}

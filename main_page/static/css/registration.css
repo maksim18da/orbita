@@ -20,10 +20,6 @@ body.loaded {
 @view-transition{
     navigation: auto;
 }
-.landinge_page{
-    position: relative;
-    width: 100%;
-}
 ::-webkit-scrollbar{
     background-color: #fbddfa;
     width: 10px;
@@ -34,6 +30,11 @@ body.loaded {
     background-clip: padding-box;
     border: 2px solid transparent;
 }
+.landinge_page{
+    position: relative;
+    width: 100%;
+}
+
 .header{
     max-width: 100%;
     display: flex;
@@ -151,13 +152,11 @@ body.loaded {
     cursor: pointer;
     transition: all 0.2s ease;
 }
-
 .home_button:hover {
     background: linear-gradient(45deg, #FF00DD, #E700C8);
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(231, 0, 200, 0.3);
 }
-
 .home_button:active {
     transform: translateY(1px);
     box-shadow: 0 5px 10px rgba(231, 0, 200, 0.2);
@@ -187,18 +186,15 @@ body.loaded {
     flex-direction: column;
     flex: 1;
 }
-
-.title {
-    max-width: 425px;
-    height: auto;
+.registration_block .title {
+    text-align: center;
     font-weight: 800;
     color: #000083;
     letter-spacing: 0.02em;
     font-size: 50px;
     line-height: 100%;
-    text-align: center;
+    max-width: 425px;
 }
-
 .schoolboy {
     max-width: 378px;
     min-height: 438px;
@@ -348,6 +344,8 @@ body.loaded {
     transform: scale(0.98);
 }
 .button-login{
+    max-width: 120px;
+    width: 100%;
     font-size: 25px;
     font-weight: 500;
     letter-spacing: 0;
@@ -356,7 +354,7 @@ body.loaded {
     border: none;
     border-radius: 30px;
     background-color: #ff4ad8;
-    padding: 10px 20px;
+    padding: 10px;
 }
 .button-login:hover {
     cursor: pointer;
@@ -381,6 +379,12 @@ body.loaded {
     font-weight: 500;
     letter-spacing: 0;
     line-height: 100%;
+}
+.personal_data span a{
+    text-decoration: none;
+}
+.personal_data span a:hover{
+    text-decoration: underline;
 }
 .confirm{
     display: none;
@@ -427,4 +431,148 @@ body.loaded {
    display: flex;
    flex-direction: column;
    min-height: 100%;
+}
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 0;
+    }
+
+    .registration_block {
+        padding: 0 16px;
+        margin: 0 0 40px 0;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .background {
+        display: block;
+        background-color: transparent;
+        padding: 0;
+        border-radius: 0;
+        min-height: auto;
+        position: relative;
+    }
+    .visual {
+        display: none;
+    }
+    .form {
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        border-radius: 24px;
+        background-color: #FAFBFF;
+        min-height: auto;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .form_content {
+        padding: 24px 18px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .selection {
+        font-size: 16px;
+        gap: 5px;
+        padding: 4px;
+        border-radius: 16px;
+        width: 100%;
+    }
+
+    .registration,
+    .login {
+        font-size: 16px;
+        padding: 6px 12px;
+        width: 50%;
+        text-align: center;
+        margin: 4px;
+        border-radius: 14px;
+    }
+
+    .login {
+        width: 50%;
+    }
+
+    /* ===== ПОЛЯ ===== */
+    .data {
+        gap: 12px;
+        margin-top: 16px;
+        width: 100%;
+    }
+
+    .input-field {
+        font-size: 15px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .button-submit {
+        font-size: 20px;
+        padding: 12px;
+        max-width: 100%;
+        border-radius: 24px;
+        margin-top: 16px;
+        width: 100%;
+    }
+
+    .button-login {
+        font-size: 20px;
+        padding: 12px;
+        max-width: 100%;
+        border-radius: 24px;
+        width: 100%;
+    }
+
+    .personal_data {
+        gap: 8px;
+        align-items: flex-start;
+        margin-top: 16px;
+        width: 100%;
+    }
+
+    .personal_data span {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    .checkbox {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+    }
+
+    .error-message {
+        font-size: 14px;
+    }
+
+    .login_page .input-field {
+        margin-top: 0;
+    }
+
+    .login_confirm {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+        margin-top: 16px;
+        width: 100%;
+    }
+
+    .login_confirm span {
+        text-align: center;
+        font-size: 14px;
+    }
+    .confirm.active {
+        width: 100%;
+        height: auto;
+        padding: 30px 20px;
+        box-sizing: border-box;
+    }
+
+    .confirm.active span {
+        width: 100%;
+        font-size: 18px;
+    }
 }

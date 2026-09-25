@@ -2,8 +2,16 @@ const closeBtn = document.querySelector(".close-btn");
 const form = document.querySelector(".Contacts");
 
 function closeForm() {
-    form.reset();
-    window.parent.postMessage('closeForm', '*');
+    if (form) form.reset();
+    if (window.parent !== window) {
+        window.parent.postMessage('closeForm', '*');
+    } else {
+        const popUp = document.querySelector('.popUp');
+        if (popUp) {
+            popUp.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
 }
 
 closeBtn.addEventListener("click", function() {

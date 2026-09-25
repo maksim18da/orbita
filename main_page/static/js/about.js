@@ -76,13 +76,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
             },15)
         }
         obsever.observe(document.querySelector('.advantages_block'))
-
+        let shift = window.IphoneMedia ? 280 : 400
         btn_forward.addEventListener('click', ()=>{
             currentIndex++
             if(currentIndex == cards_count){
                 currentIndex = 0
             }
-            slider_cards.style.transform = `translateX(-${currentIndex * 360}px)`
+            slider_cards.style.transform = `translateX(-${currentIndex * shift}px)`
         })
         btn_back.addEventListener('click', ()=>{
             if(currentIndex == 0){
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             }
             if(currentIndex>0){
                 currentIndex--
-                slider_cards.style.transform = `translateX(-${currentIndex * 360}px)`
+                slider_cards.style.transform = `translateX(-${currentIndex * shift}px)`
             }
         })
         const button_back = document.querySelector('.students-reviews .back')
@@ -101,16 +101,16 @@ document.addEventListener('DOMContentLoaded', ()=>{
         let reviews_track = document.querySelector('.reviews-track')
         let start = 0
         let reviews = document.querySelectorAll('.reviews-box')
-        let reviews_count = reviews.length - 2
+        let reviews_count = reviews.length
         function review_forward(){
             if (start == reviews_count){
                 start = 0
             }
             else{
-                reviews_track.style.transform = `translateX(-${start * 400}px)`
+                reviews_track.style.transform = `translateX(-${start * shift}px)`
             }
             if (start == 0){
-                reviews_track.style.transform = `translateX(-${start * 400}px)`
+                reviews_track.style.transform = `translateX(-${start * shift}px)`
             }
         }
         function review_back(){
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             }
             if(start>0){
                 start--
-                reviews_track.style.transform = `translateX(-${start * 400}px)`
+                reviews_track.style.transform = `translateX(-${start * shift}px)`
             }
         }
         let previos = null
@@ -144,7 +144,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
         button_forward.addEventListener('click', ()=>{
             start++
             review_forward()
-            console.log(start)
         })
         button_back.addEventListener('click', ()=>{
             review_back()

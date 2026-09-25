@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orbita</title>
     <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+    <link rel="stylesheet" href="{% static 'css/orbita.css' %}">
     <link rel="icon" href="{% static 'images/Planet.png' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,12 +33,12 @@
                                     <ul>
                                         <li>
                                             <div class="network">
-                                                <a href="https://t.me/frozZymen"><img src="{% static 'images/telegram.png' %}" alt="telegram logo">telegram</a>
+                                                <a href="https://t.me/frozZymen"><img src="{% static 'images/telegram.png'%}" alt="telegram logo">telegram</a>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="network">
-                                                <a href="https://api.whatsapp.com/send?phone=79000560515"><img src="{% static 'images/whatsapp.png' %}" alt="whatsapp logo">whatsapp</a>
+                                                <a href="https://api.whatsapp.com/send?phone=79000560515"><img src="{% static 'images/whatsapp.png'%}" alt="whatsapp logo">whatsapp</a>
                                             </div>
                                         </li>
                                         <li class="copy-block" data-copy="+7-900-056-05-15">+7(900)056-05-15</li>
@@ -46,11 +47,22 @@
                             </div>
                         </li>
                     </ul>
-                    <a href="{% url 'home_page' %}" class="home_button">На главную</a>
+                    <a href="{% url 'registration' %}" class="button_personal_account">Личный кабинет</a>
                 </div>
+                <div class="burger-menu">
+                    <ul>
+                        <li><a href="{% url 'about_page' %}">О школе</a></li>
+                        <li><a href="{% url 'home_page' %}#tariffs">Тарифы</a></li>
+                        <li><a href="{% url 'registration' %}" class="button_personal_account">Личный кабинет</a></li>
+                    </ul>
+                </div>
+                <button class="burger-button" id="burgerBtn">
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                </button>
             </nav>
         </header>
-
         <div class="registration_block">
             <div class="background">
                 <div class="visual">
@@ -111,9 +123,9 @@
                                     </p>
                                 </div>
                                 <div class="personal_data">
-                                    <input type="checkbox" class="checkbox" checked>
+                                    <input type="checkbox" class="checkbox">
                                     <span>Я подтверждаю своё согласие с условиями<br>
-                                        публичной оферты и согласен на обработку<br>
+                                        <a href="{% url 'oferta_page' %}">публичной оферты</a> и согласен на обработку<br>
                                         персональных данных в соответствии с политикой конфиденциальности
                                     </span>
                                 </div>
@@ -142,5 +154,6 @@
         </div>
     </div>
     <script defer src="{% static 'js/registration.js' %}"></script>
+<script defer src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
