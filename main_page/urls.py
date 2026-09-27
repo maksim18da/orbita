@@ -12,6 +12,7 @@ urlpatterns = [
     path('about/', views.about_page, name='about_page'),
     path('oferta/', views.oferta_page, name='oferta_page'),
     path('personal_data', views.personal_page, name='personal_page'),
+    path('policy', views.policy_page, name='policy_page'),
     path('cabinet/homework/<int:homework_id>/upload/', views.upload_homework_view, name='upload_homework'),
     path('cabinet/chat/<int:room_id>/messages/', views.chat_messages_view, name='chat_messages'),
     path('cabinet/chat/<int:room_id>/send/', views.chat_send_message_view, name='chat_send'),
