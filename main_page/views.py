@@ -139,6 +139,8 @@ def about_page(request):
     return render(request, 'orbita/about.html', {'form': form})
 def oferta_page(request):
     return render(request, 'orbita/oferta.html')
+def personal_page(request):
+    return render(request, 'orbita/personal_data.html')
 
 def contact_view(request):
     if request.method == 'POST':
