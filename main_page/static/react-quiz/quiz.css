@@ -18,7 +18,13 @@
     padding: 32px;
     box-shadow: 0 20px 50px #503fcd26;
 }
-
+.question-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 16px;
+    border-radius: 8px;
+}
 #react-quiz-root .quiz-card.hide {
     display: none;
 }
