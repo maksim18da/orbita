@@ -1,27 +1,30 @@
 import os
 from pathlib import Path
-from dotenv import load_dotenv
+
 import dj_database_url
+from dotenv import load_dotenv
 
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-#91x!$hdp#o@l+7!=u-h02c7&n-mu0pq2cy517v@!%z!@!!86+')
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-change-me-in-production')
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
-CSRF_TRUSTED_ORIGINS = [
-    'https://*.vercel.app',
-    'https://orbita-school.vercel.app',
-]
+
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '.vercel.app',
     'orbitaschool.pythonanywhere.com',
 ]
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.vercel.app',
+    'https://orbita-school.vercel.app',
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -32,6 +35,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main_page',
 ]
+
+if os.getenv('S3_BUCKET'):
+    INSTALLED_APPS.append('storages')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -68,7 +74,7 @@ DATABASE_URL = os.getenv('DATABASE_URL')
 
 if DATABASE_URL:
     DATABASES = {
-        'default': dj_database_url.config(default=DATABASE_URL)
+        'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=0),
     }
 else:
     DATABASES = {
@@ -79,18 +85,10 @@ else:
     }
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 LANGUAGE_CODE = 'ru-ru'
@@ -101,12 +99,38 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+USE_S3 = bool(os.getenv('S3_BUCKET'))
+IS_VERCEL = bool(os.getenv('VERCEL'))
+
+if USE_S3:
+    AWS_ACCESS_KEY_ID = os.environ['S3_ACCESS_KEY']
+    AWS_SECRET_ACCESS_KEY = os.environ['S3_SECRET_KEY']
+    AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET']
+    AWS_S3_ENDPOINT_URL = os.getenv('S3_ENDPOINT') or None
+    AWS_S3_REGION_NAME = os.getenv('S3_REGION', 'auto')
+    AWS_S3_SIGNATURE_VERSION = 's3v4'
+    AWS_QUERYSTRING_AUTH = False
+    AWS_S3_FILE_OVERWRITE = False
+    AWS_DEFAULT_ACL = None
+
+    if os.getenv('S3_CUSTOM_DOMAIN'):
+        AWS_S3_CUSTOM_DOMAIN = os.environ['S3_CUSTOM_DOMAIN']
+
+    DEFAULT_FILE_STORAGE_CONFIG = {
+        'BACKEND': 'storages.backends.s3.S3Storage',
+    }
+else:
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = Path('/tmp/media') if IS_VERCEL else BASE_DIR / 'media'
+    DEFAULT_FILE_STORAGE_CONFIG = {
+        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+    }
+
 STORAGES = {
-    "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    'default': DEFAULT_FILE_STORAGE_CONFIG,
+    'staticfiles': {
+        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
     },
 }
 
