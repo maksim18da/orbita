@@ -33,7 +33,7 @@ def home_page(request):
             messages.error(request, 'Ошибка в заполнении формы')
     else:
         form = ContactForm()
-    return render(request, 'orbita/orbita.html', {'form': form})
+    return render(request, 'orbita/index.html', {'form': form})
 
 
 def registration_page(request):
@@ -152,7 +152,7 @@ def contact_view(request):
             return redirect('home_page')
         else:
             messages.error(request, 'Ошибка в заполнении формы')
-            return render(request, 'orbita/orbita.html', {'form': form})
+            return render(request, 'orbita/index.html', {'form': form})
     else:
         return redirect('home_page')
 
