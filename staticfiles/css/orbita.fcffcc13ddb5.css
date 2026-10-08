@@ -751,7 +751,7 @@ html, body {
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
-    background-image: url("../images/li_planet.svg");
+    background-image: url("../images/li_planet.300f3c3ab471.svg");
     background-size: contain;
     background-repeat: no-repeat;
 }
