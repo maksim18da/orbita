@@ -1843,6 +1843,6 @@ html, body {
     }
     .popUp .Contacts {
         max-width: 355px;
-        max-height: 540px;
+        max-height: 95vh;
     }
 }
