@@ -67,7 +67,7 @@ html, body {
     display: flex;
     align-items: center;
     flex: 1;
-    margin-left: 300px;
+    margin-left: 200px;
     justify-content: space-between;
 }
 .header_menu ul {
