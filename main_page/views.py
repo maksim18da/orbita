@@ -415,9 +415,16 @@ def upload_homework_view(request, homework_id):
     if request.method != 'POST' or 'file' not in request.FILES:
         return JsonResponse({'success': False, 'error': 'Файл не передан'}, status=400)
 
-    homework.student_file = request.FILES['file']
-    homework.submitted_at = timezone.now()
-    homework.save()
+    try:
+        # Если файл уже есть, Django по умолчанию НЕ удаляет старый физически,
+        # а создает новый с суффиксом (например, file_abc123.pdf).
+        # Если вы хотите удалять старый файл, это нужно делать вручную (см. ниже).
+        homework.student_file = request.FILES['file']
+        homework.submitted_at = timezone.now()
+        homework.save()
+    except Exception as e:
+        # Возвращаем текст ошибки, чтобы он появился в alert() на фронте
+        return JsonResponse({'success': False, 'error': f'Ошибка сервера: {str(e)}'}, status=500)
 
     return JsonResponse({'success': True})
 
