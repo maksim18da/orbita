@@ -201,8 +201,8 @@
                             <div class="status" style="background-color:#fff2df;color:#b8760a;">В работе</div>
                         {% endif %}
 
-                        {% if hw.teacher_file %}
-                        <a class="look" href="{{ hw.teacher_file.url }}" download>Посмотреть</a>
+                        {% if hw.student_file %}
+                        <a class="look" href="{{ hw.student_file.url }}?v={{ hw.submitted_at|date:'U' }}" target="_blank" rel="noopener">Посмотреть</a>
                         {% endif %}
 
                         {% if hw.status != 'verified' %}

@@ -105,26 +105,39 @@ document.addEventListener('DOMContentLoaded', ()=>{
     document.querySelectorAll('.upload-form').forEach(form => {
         const homeworkId = form.dataset.homeworkId;
         const fileInput = form.querySelector('input[type="file"]');
+        const button = form.querySelector('button');
 
-        fileInput.addEventListener('change', () => {
+        fileInput.addEventListener('change', async () => {
             if (!fileInput.files.length) return;
 
             const formData = new FormData();
             formData.append('file', fileInput.files[0]);
+            const oldLabel = button.textContent;
+            button.textContent = 'Загружаю…';
+            button.disabled = true;
 
-            fetch(`/cabinet/homework/${homeworkId}/upload/`, {
-                method: 'POST',
-                headers: { 'X-CSRFToken': getCookie('csrftoken') },
-                body: formData,
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
+            try {
+                const res = await fetch(`/cabinet/homework/${homeworkId}/upload/`, {
+                    method: 'POST',
+                    headers: { 'X-CSRFToken': getCookie('csrftoken') },
+                    body: formData,
+                });
+
+                let data = null;
+                try { data = await res.json(); } catch (e) {}
+
+                if (res.ok && data && data.success) {
                     location.reload();
-                } else {
-                    alert(data.error || 'Не удалось загрузить файл');
+                    return;
                 }
-            });
+                alert((data && data.error) || `Не удалось загрузить файл (код ${res.status}). Проверьте размер файла.`);
+            } catch (e) {
+                alert('Ошибка сети. Попробуйте ещё раз.');
+            } finally {
+                fileInput.value = '';
+                button.textContent = oldLabel;
+                button.disabled = false;
+            }
         });
     });
 
