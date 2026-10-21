@@ -415,27 +415,9 @@ def upload_homework_view(request, homework_id):
     if request.method != 'POST' or 'file' not in request.FILES:
         return JsonResponse({'success': False, 'error': 'Файл не передан'}, status=400)
 
-    f = request.FILES['file']
-    if f.size > 4 * 1024 * 1024:
-        return JsonResponse({'success': False, 'error': 'Файл больше 4 МБ'}, status=400)
-
-    storage = homework.student_file.storage
-    old_name = homework.student_file.name if homework.student_file else None
-    try:
-        homework.student_file = f
-        homework.student_file_name = f.name[:255]
-        homework.submitted_at = timezone.now()
-        homework.save()
-    except Exception:
-        import logging
-        logging.getLogger(__name__).exception("Не удалось сохранить файл ДЗ %s", homework_id)
-        return JsonResponse({'success': False, 'error': 'Не удалось сохранить файл. Попробуйте позже.'}, status=500)
-
-    if old_name and old_name != homework.student_file.name:
-        try:
-            storage.delete(old_name)
-        except Exception:
-            pass
+    homework.student_file = request.FILES['file']
+    homework.submitted_at = timezone.now()
+    homework.save()
 
     return JsonResponse({'success': True})
 
