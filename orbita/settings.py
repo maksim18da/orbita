@@ -115,14 +115,14 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 
 if USE_S3:
-    AWS_ACCESS_KEY_ID = env('S3_ACCESS_KEY')
-    AWS_SECRET_ACCESS_KEY = env('S3_SECRET_KEY')
-    AWS_STORAGE_BUCKET_NAME = env('S3_BUCKET')
+    AWS_ACCESS_KEY_ID = os.environ["S3_ACCESS_KEY"].strip()
+    AWS_SECRET_ACCESS_KEY = os.environ["S3_SECRET_KEY"].strip()
+    AWS_STORAGE_BUCKET_NAME = os.environ["S3_BUCKET"].strip()
     AWS_S3_ENDPOINT_URL = env('S3_ENDPOINT') or None
     AWS_S3_REGION_NAME = env('S3_REGION', 'eu-west-1')
     AWS_S3_SIGNATURE_VERSION = 's3v4'
-    AWS_S3_ADDRESSING_STYLE = 'path'  # нужно для Supabase и большинства S3-совместимых сервисов
-    AWS_QUERYSTRING_AUTH = False
+    AWS_S3_ADDRESSING_STYLE = 'path'
+    AWS_QUERYSTRING_AUTH = True
     AWS_S3_FILE_OVERWRITE = False
     AWS_DEFAULT_ACL = None
 
