@@ -423,6 +423,7 @@ def upload_homework_view(request, homework_id):
     old_name = homework.student_file.name if homework.student_file else None
     try:
         homework.student_file = f
+        homework.student_file_name = f.name[:255]
         homework.submitted_at = timezone.now()
         homework.save()
     except Exception:

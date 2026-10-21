@@ -1,7 +1,15 @@
+import os
+import uuid
 from django.db import models
 from django.contrib.auth.hashers import make_password, check_password
 from django.utils import timezone
+def homework_student_path(instance, filename):
+    ext = os.path.splitext(filename)[1].lower()
+    return f"homework/student/{instance.student_id}/{uuid.uuid4().hex}{ext}"
 
+def homework_teacher_path(instance, filename):
+    ext = os.path.splitext(filename)[1].lower()
+    return f"homework/teacher/{instance.student_id}/{uuid.uuid4().hex}{ext}"
 class Contact(models.Model):
     surname = models.CharField('Фамилия', max_length=20)
     name = models.CharField('Имя', max_length=20)
@@ -94,13 +102,13 @@ class Homework(models.Model):
     description = models.TextField('Описание задания', blank=True)
     due_date = models.DateField('Срок сдачи')
     teacher_file = models.FileField(
-        'Файл учителя', upload_to='homework/student/%Y/%m/',
-        null=True, blank=True
+        'Файл учителя', upload_to=homework_teacher_path, null=True, blank=True
     )
+    teacher_file_name = models.CharField('Имя файла учителя', max_length=255, blank=True)
     student_file = models.FileField(
-        'Файл ученика', upload_to='homework/student/%Y/%m/',
-        null=True, blank=True
+        'Файл ученика', upload_to=homework_student_path, null=True, blank=True
     )
+    student_file_name = models.CharField('Имя файла ученика', max_length=255, blank=True)
     submitted_at = models.DateTimeField('Дата сдачи', null=True, blank=True)
 
     grade = models.PositiveSmallIntegerField('Оценка', null=True, blank=True)
@@ -108,7 +116,11 @@ class Homework(models.Model):
     checked_at = models.DateTimeField('Дата проверки', null=True, blank=True)
 
     created_at = models.DateTimeField('Задано', auto_now_add=True)
-
+    def save(self, *args, **kwargs):
+        f = self.teacher_file
+        if f and not getattr(f, '_committed', True):   # загружается новый файл
+            self.teacher_file_name = os.path.basename(f.name)[:255]
+        super().save(*args, **kwargs)
     @property
     def status(self):
         if self.grade is not None:
