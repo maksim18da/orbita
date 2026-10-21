@@ -108,6 +108,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
         const button = form.querySelector('button');
 
         fileInput.addEventListener('change', async () => {
+            if (fileInput.files[0].size > 4 * 1024 * 1024) {
+                alert('Файл больше 4 МБ. Сожмите фото или загрузите PDF поменьше.');
+                fileInput.value = '';
+                return;
+            }
             if (!fileInput.files.length) return;
 
             const formData = new FormData();
