@@ -137,7 +137,7 @@ def about_page(request):
     else:
         form = ContactForm()
     return render(request, 'orbita/about.html', {'form': form})
-def courses_page(request):
+def courses_page(request, subpath=''):
     return render(request, 'courses/index.html')
 def oferta_page(request):
     return render(request, 'orbita/oferta.html')

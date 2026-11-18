@@ -17,4 +17,6 @@ urlpatterns = [
     path('cabinet/homework/<int:homework_id>/upload/', views.upload_homework_view, name='upload_homework'),
     path('cabinet/chat/<int:room_id>/messages/', views.chat_messages_view, name='chat_messages'),
     path('cabinet/chat/<int:room_id>/send/', views.chat_send_message_view, name='chat_send'),
+    path('courses-page/', views.courses_page, name='courses_page'),
+    path('courses-page/<path:subpath>', views.courses_page),
 ]
